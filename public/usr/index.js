@@ -324,7 +324,7 @@ $(function() {
 			rot.add(mdl = new THREE.Object3D());
 			ligand = reader.result;
 			format = file.name.substr((~-file.name.lastIndexOf('.') >>> 0) + 2).toLowerCase();
-			var lines = ligand.split(/\r?\n/), atoms = {};
+			var lines = ligand.split(/\r\n|\n|\r/), atoms = {};
 			if (format === 'mol2') {
 				var offset = 0;
 				while (lines[offset++].substr(0, 17) !== '@<TRIPOS>MOLECULE');
