@@ -1,159 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Hongjian Li">
-  <meta name="description" content="icuda: hands-on introduction to CUDA programming">
-  <title>hands-on introduction to CUDA programming</title>
-  <link rel="stylesheet" href="../bootstrap.min.css">
-  <link rel="stylesheet" href="../index.css">
-  <link rel="stylesheet" href="jquery.snippet.min.css">
-  <link rel="stylesheet" href="index.css">
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
-  <script>
-    var _gaq=[['_setAccount','UA-20604862-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Hongjian Li">
+	<meta name="description" content="icuda: hands-on introduction to CUDA programming">
+	<title>hands-on introduction to CUDA programming</title>
+	<link rel="stylesheet" href="../bootstrap.min.css">
+	<link rel="stylesheet" href="../index.css">
+	<link rel="stylesheet" href="jquery.snippet.min.css">
+	<link rel="stylesheet" href="index.css">
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
+	<script>
+		var _gaq=[['_setAccount','UA-20604862-1'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
 </head>
 <body>
-  <a class="sr-only" href="#content">Skip navigation</a>
-  <a href="https://github.com/HongjianLi/istar" class="ribbon"></a>
-  <header class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href=".."><img src="../logo.png" alt="istar logo">istar: software as a service</a>
-          </li>
-          <li>
-            <a href="../idock"><img src="../idock/logo.png" alt="idock logo">idock: structure-based virtual screening</a>
-          </li>
-          <li>
-            <a href="../usr"><img src="../usr/logo.png" alt="idock logo">USR: ligand-based virtual screening</a>
-          </li>
-          <li>
-            <a href="../iview"><img src="../iview/logo.png" alt="iview logo">iview: interactive WebGL visualizer</a>
-          </li>
-          <li>
-            <a href="../igrep"><img src="../igrep/logo.png" alt="igrep logo">igrep: DNA sequence matching</a>
-          </li>
-          <li class="active">
-            <a href="../icuda"><img src="../icuda/logo.png" alt="icuda logo">icuda: introduction to CUDA</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <div class="jumbotron" id="content" role="main">
-    <div class="container">
-      <h1><img src="logo.png" alt="logo" class="logo">icuda</h1>
-      <p>hands-on introduction to CUDA programming</p>
-    </div>
-  </div>
-  <div class="container section">
-    <section>
-      <div class="page-header">
-        <h2>Outline</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>This is a hands-on seminar series on pragmatic CUDA programming. It emphasizes <b>samples</b>, <b>libraries</b> and <b>tools</b>. This seminar series consists of 3 seminars.</p>
-          <h2>Contents in 2013/14 term 1</h2>
-          <p>Seminar 1: This seminar gives a high-level overview of GPU hardware and CUDA programming philosophy. It covers four samples including <a href="#vectorAdd">vectorAdd</a>, <a href="#zeroCopy">zeroCopy</a>, <a href="#bandwidthTest">bandwidthTest</a> and <a href="#checkError">checkError</a>, and two tools including <a href="#nvcc">nvcc</a> and <a href="#cuda-gdb">cuda-gdb</a>.</p>
-          <p>Seminar 2: This seminar illustrates how to exploit single-device parallelism and GPU-specific hardware components. It covers four samples including <a href="#matrixMul">matrixMul</a>, <a href="#atomicAdd">atomicAdd</a>, <a href="#asyncEngine">asyncEngine</a> and <a href="#hyperQ">hyperQ</a>, and three tools including <a href="#nvprof">nvprof</a>, <a href="#nsight">nsight</a> and <a href="#CUDA_Occupancy_Calculator.xls">CUDA_Occupancy_Calculator.xls</a>.</p>
-          <p>Seminar 3: This seminar illustrates how to exploit multi-device parallelism and how to utilize libraries. It covers six samples including <a href="#deviceQuery">deviceQuery</a>, <a href="#multiDevice">multiDevice</a>, <a href="#openmp">openmp</a>, <a href="#mpi">mpi</a>, <a href="#cublas">cublas</a> and <a href="#thrust">thrust</a>, and four tools including <a href="#nvidia-smi">nvidia-smi</a>, <a href="#cuda-memcheck">cuda-memcheck</a>, <a href="#nvdisasm">cuobjdump & nvdisasm</a>.</p>
-          <h2>Contents in 2013/14 term 2</h2>
-          <p>Seminar 1: This seminar introduces the productivity-oriented library <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a>, a CUDA implementation of C++ STL (Standard Template Library). It covers eight samples including <a href="#saxpy">saxpy</a>, <a href="#sum">sum</a>, <a href="#norm">norm</a>, <a href="#piEstimate">piEstimate</a>, <a href="#maxSquaredDiff">maxSquaredDiff</a>, <a href="#wordCount">wordCount</a>, <a href="#conditionalCopy">conditionalCopy</a> and <a href="#arbitraryTransformation">arbitraryTransformation</a>.</p>
-          <p>Seminar 2: This seminar gives a high-level overview of GPU hardware and CUDA programming philosophy. It covers seven samples including <a href="#vectorAdd">vectorAdd</a>, <a href="#zeroCopy">zeroCopy</a>, <a href="#bandwidthTest">bandwidthTest</a>, <a href="#checkError">checkError</a>, <a href="#atomicAdd">atomicAdd</a>, <a href="#matrixMul">matrixMul</a> and <a href="#cublas">cublas</a>, and two tools including <a href="#nvcc">nvcc</a> and <a href="#cuda-gdb">cuda-gdb</a>.</p>
-          <p>Seminar 3: This seminar illustrates how to exploit single-device and multi-device parallelisms. It covers six samples including <a href="#deviceQuery">deviceQuery</a>, <a href="#asyncEngine">asyncEngine</a>, <a href="#hyperQ">hyperQ</a>, <a href="#multiDevice">multiDevice</a>, <a href="#openmp">openmp</a> and <a href="#mpi">mpi</a>, and six tools including <a href="#nvprof">nvprof</a>, <a href="#nsight">nsight</a>, <a href="#CUDA_Occupancy_Calculator.xls">CUDA_Occupancy_Calculator.xls</a>, <a href="#nvidia-smi">nvidia-smi</a>, <a href="#cuda-memcheck">cuda-memcheck</a>, <a href="#nvdisasm">cuobjdump & nvdisasm</a>.</p>
-          <h2>Time & venue in 2013/14 term 1</h2>
-          <p>Seminar 1: 08 Nov 2013, 2:00pm - 4:00pm, SHB 123</p>
-          <p>Seminar 2: 14 Nov 2013, 2:00pm - 4:00pm, SHB 123</p>
-          <p>Seminar 3: 21 Nov 2013, 2:00pm - 4:00pm, SHB 123</p>
-          <h2>Time & venue in 2013/14 term 2</h2>
-          <p>Seminar 1: 11 Feb 2014, 2:00pm - 4:00pm, SHB 123</p>
-          <p>Seminar 2: 18 Feb 2014, 2:00pm - 4:00pm, SHB 123</p>
-          <p>Seminar 3: 25 Feb 2014, 2:00pm - 4:00pm, SHB 123</p>
-          <h2>Forms</h2>
-          <p><a href="GPGPU-Account.pdf">GPGPU System ACCOUNT REQUEST FORM</a></p>
-          <h2>References</h2>
-          <p><a href="https://developer.nvidia.com/category/zone/cuda-zone">CUDA zone</a></p>
-          <p><a href="http://docs.nvidia.com/cuda">CUDA toolkit documentation</a></p>
-          <p><a href="http://appsrv.cse.cuhk.edu.hk/~hjli/pptx/icuda.pptx">Seminar slides</a></p>
-          <p>Videos of <a href="seminar1.m2ts">seminar 1</a>, <a href="seminar2.m2ts">seminar 2</a> and <a href="seminar3.m2ts">seminar 3</a> in 2013/14 term 1</p>
-          <p>Videos of <a href="CUDA_Day1.mp4">seminar 1</a>, <a href="CUDA_Day2.mp4">seminar 2</a> and <a href="CUDA_Day3.mp4">seminar 3</a> in 2013/14 term 2</p>
-          <p><a href="http://courses.engr.illinois.edu/ece408">UIUC course ECE408/CS483: Applied Parallel Programming</a></p>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="page-header">
-        <h2>Samples</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>All the samples are free and open source under Apache License 2.0. They are available at <a href="https://github.com/HongjianLi/cudart">https://github.com/HongjianLi/cudart</a>.</p>
+	<a class="sr-only" href="#content">Skip navigation</a>
+	<a href="https://github.com/HongjianLi/istar" class="ribbon"></a>
+	<header class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href=".."><img src="../logo.png" alt="istar logo">istar: software as a service</a>
+					</li>
+					<li>
+						<a href="../idock"><img src="../idock/logo.png" alt="idock logo">idock: structure-based virtual screening</a>
+					</li>
+					<li>
+						<a href="../usr"><img src="../usr/logo.png" alt="idock logo">USR: ligand-based virtual screening</a>
+					</li>
+					<li>
+						<a href="../iview"><img src="../iview/logo.png" alt="iview logo">iview: interactive WebGL visualizer</a>
+					</li>
+					<li>
+						<a href="../igrep"><img src="../igrep/logo.png" alt="igrep logo">igrep: DNA sequence matching</a>
+					</li>
+					<li class="active">
+						<a href="../icuda"><img src="../icuda/logo.png" alt="icuda logo">icuda: introduction to CUDA</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="jumbotron" id="content" role="main">
+		<div class="container">
+			<h1><img src="logo.png" alt="logo" class="logo">icuda</h1>
+			<p>hands-on introduction to CUDA programming</p>
+		</div>
+	</div>
+	<div class="container section">
+		<section>
+			<div class="page-header">
+				<h2>Outline</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>This is a hands-on seminar series on pragmatic CUDA programming. It emphasizes <b>samples</b>, <b>libraries</b> and <b>tools</b>. This seminar series consists of 3 seminars.</p>
+					<h2>Contents in 2013/14 term 1</h2>
+					<p>Seminar 1: This seminar gives a high-level overview of GPU hardware and CUDA programming philosophy. It covers four samples including <a href="#vectorAdd">vectorAdd</a>, <a href="#zeroCopy">zeroCopy</a>, <a href="#bandwidthTest">bandwidthTest</a> and <a href="#checkError">checkError</a>, and two tools including <a href="#nvcc">nvcc</a> and <a href="#cuda-gdb">cuda-gdb</a>.</p>
+					<p>Seminar 2: This seminar illustrates how to exploit single-device parallelism and GPU-specific hardware components. It covers four samples including <a href="#matrixMul">matrixMul</a>, <a href="#atomicAdd">atomicAdd</a>, <a href="#asyncEngine">asyncEngine</a> and <a href="#hyperQ">hyperQ</a>, and three tools including <a href="#nvprof">nvprof</a>, <a href="#nsight">nsight</a> and <a href="#CUDA_Occupancy_Calculator.xls">CUDA_Occupancy_Calculator.xls</a>.</p>
+					<p>Seminar 3: This seminar illustrates how to exploit multi-device parallelism and how to utilize libraries. It covers six samples including <a href="#deviceQuery">deviceQuery</a>, <a href="#multiDevice">multiDevice</a>, <a href="#openmp">openmp</a>, <a href="#mpi">mpi</a>, <a href="#cublas">cublas</a> and <a href="#thrust">thrust</a>, and four tools including <a href="#nvidia-smi">nvidia-smi</a>, <a href="#cuda-memcheck">cuda-memcheck</a>, <a href="#nvdisasm">cuobjdump & nvdisasm</a>.</p>
+					<h2>Contents in 2013/14 term 2</h2>
+					<p>Seminar 1: This seminar introduces the productivity-oriented library <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a>, a CUDA implementation of C++ STL (Standard Template Library). It covers eight samples including <a href="#saxpy">saxpy</a>, <a href="#sum">sum</a>, <a href="#norm">norm</a>, <a href="#piEstimate">piEstimate</a>, <a href="#maxSquaredDiff">maxSquaredDiff</a>, <a href="#wordCount">wordCount</a>, <a href="#conditionalCopy">conditionalCopy</a> and <a href="#arbitraryTransformation">arbitraryTransformation</a>.</p>
+					<p>Seminar 2: This seminar gives a high-level overview of GPU hardware and CUDA programming philosophy. It covers seven samples including <a href="#vectorAdd">vectorAdd</a>, <a href="#zeroCopy">zeroCopy</a>, <a href="#bandwidthTest">bandwidthTest</a>, <a href="#checkError">checkError</a>, <a href="#atomicAdd">atomicAdd</a>, <a href="#matrixMul">matrixMul</a> and <a href="#cublas">cublas</a>, and two tools including <a href="#nvcc">nvcc</a> and <a href="#cuda-gdb">cuda-gdb</a>.</p>
+					<p>Seminar 3: This seminar illustrates how to exploit single-device and multi-device parallelisms. It covers six samples including <a href="#deviceQuery">deviceQuery</a>, <a href="#asyncEngine">asyncEngine</a>, <a href="#hyperQ">hyperQ</a>, <a href="#multiDevice">multiDevice</a>, <a href="#openmp">openmp</a> and <a href="#mpi">mpi</a>, and six tools including <a href="#nvprof">nvprof</a>, <a href="#nsight">nsight</a>, <a href="#CUDA_Occupancy_Calculator.xls">CUDA_Occupancy_Calculator.xls</a>, <a href="#nvidia-smi">nvidia-smi</a>, <a href="#cuda-memcheck">cuda-memcheck</a>, <a href="#nvdisasm">cuobjdump & nvdisasm</a>.</p>
+					<h2>Time & venue in 2013/14 term 1</h2>
+					<p>Seminar 1: 08 Nov 2013, 2:00pm - 4:00pm, SHB 123</p>
+					<p>Seminar 2: 14 Nov 2013, 2:00pm - 4:00pm, SHB 123</p>
+					<p>Seminar 3: 21 Nov 2013, 2:00pm - 4:00pm, SHB 123</p>
+					<h2>Time & venue in 2013/14 term 2</h2>
+					<p>Seminar 1: 11 Feb 2014, 2:00pm - 4:00pm, SHB 123</p>
+					<p>Seminar 2: 18 Feb 2014, 2:00pm - 4:00pm, SHB 123</p>
+					<p>Seminar 3: 25 Feb 2014, 2:00pm - 4:00pm, SHB 123</p>
+					<h2>Forms</h2>
+					<p><a href="GPGPU-Account.pdf">GPGPU System ACCOUNT REQUEST FORM</a></p>
+					<h2>References</h2>
+					<p><a href="https://developer.nvidia.com/category/zone/cuda-zone">CUDA zone</a></p>
+					<p><a href="http://docs.nvidia.com/cuda">CUDA toolkit documentation</a></p>
+					<p><a href="http://appsrv.cse.cuhk.edu.hk/~hjli/pptx/icuda.pptx">Seminar slides</a></p>
+					<p>Videos of <a href="seminar1.m2ts">seminar 1</a>, <a href="seminar2.m2ts">seminar 2</a> and <a href="seminar3.m2ts">seminar 3</a> in 2013/14 term 1</p>
+					<p>Videos of <a href="CUDA_Day1.mp4">seminar 1</a>, <a href="CUDA_Day2.mp4">seminar 2</a> and <a href="CUDA_Day3.mp4">seminar 3</a> in 2013/14 term 2</p>
+					<p><a href="http://courses.engr.illinois.edu/ece408">UIUC course ECE408/CS483: Applied Parallel Programming</a></p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Samples</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>All the samples are free and open source under Apache License 2.0. They are available at <a href="https://github.com/HongjianLi/cudart">https://github.com/HongjianLi/cudart</a>.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~></b> git clone https://github.com/HongjianLi/cudart.git
 </pre>
-          <p>All the samples use the <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/">CUDA Runtime API</a>.</p>
-          <h2>Makefile</h2>
-          <p>A sample Makefile looks like this. Instead of <code>gcc</code>, it uses <code>nvcc</code> as CUDA compiler. The option <code>-arch</code> specifies the name of the class of nVidia GPU architectures for which the cuda input files must be compiled. Our K20m GPU architecture is <code>sm_35</code>. Refer to <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/inside-tesla-kepler-k20-family.pdf">Inside the Kepler Tesla K20 Family</a> for more detail.</p>
-          <pre id="vectorAdd/Makefile"></pre>
-          <h2 id="vectorAdd">vectorAdd</h2>
-          <p>This sample adds two vectors of floats.</p>
-          <pre id="vectorAdd/vectorAdd.cu"></pre>
-          <p>Try different values of <code>numElements</code> and <code>numThreadsPerBlock</code>.</p>
-          <h2 id="zeroCopy">zeroCopy</h2>
-          <p>This sample maps device pointers to pinned host memory so that kernels can directly read from and write to pinned host memory.</p>
-          <p>On <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#data-transfer-between-host-and-device">integrated systems</a> where device memory and host memory are physically the same, the mapping mechanism saves superfluous copies from host to device and from device to host.</p>
-          <p>On discrete systems where device memory and host memory are physically different, the mapping mechanism saves explicit copies from host to device and from device to host.</p>
-          <pre id="zeroCopy/zeroCopy.cu"></pre>
-          <p>Try passing the flag <code>cudaDeviceScheduleAuto</code> to <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g18074e885b4d89f5a0fe1beab589e0c8">cudaSetDeviceFlags</a>.</p>
-          <p>Try passing the flag <code>cudaHostAllocDefault</code> to <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g15a3871f15f8c38f5b7190946845758c">cudaHostAlloc</a> to allocate the memory as non-mapped.</p>
-          <h2 id="bandwidthTest">bandwidthTest</h2>
-          <p>This sample measures host-to-device and device-to-host bandwidth via PCIe for pageable and pinned memory of four transfer sizes of 3KB, 15KB, 15MB and 100MB, and outputs them in CSV format.</p>
-          <pre id="bandwidthTest/bandwidthTest.cu"></pre>
-          <p>Try different values of <code>sizes</code>.</p>
-          <p>Try <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g48efa06b81cc031b2aa6fdc2e9930741">cudaMemcpy</a> instead of <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gf2810a94ec08fe3c7ff9d93a33af7255">cudaMemcpyAsync</a> on pinned memory.</p>
-          <p>Try <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g36b9fe28f547f28d23742e8c7cd18141">cudaHostRegister</a> to register an existing host memory range as pinned memory, and <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gc07b1312c60ca36c118e2ed71b192afe">cudaHostUnregister</a> to unregister it after use.</p>
-          <p>Try passing the flag <code>cudaHostAllocWriteCombined</code> to <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g15a3871f15f8c38f5b7190946845758c">cudaHostAlloc</a> to allocate the memory as write-combined (WC).</p>
-          <h2 id="checkError">checkError</h2>
-          <p>This sample checks the return value of every runtime API. It requires <code>-I /usr/local/cuda/samples/common/inc</code> in the Makefile.</p>
-          <pre id="checkError/checkError.cu"></pre>
-          <p>Try setting <code>numElements</code> to 1e+10, and observe <code>cudaErrorMemoryAllocation</code>.</p>
-          <p>Try setting <code>numThreadsPerBlock</code> to 2560, and observe <code>cudaErrorInvalidConfiguration</code>.</p>
-          <p>Try accessing <code>a[i*2]</code> in the kernel, and observe <code>cudaErrorLaunchFailure</code>. Note the error line number at line 26 because kernel execution is asynchronous.</p>
-          <p>The <code>checkCudaErrors</code> macro, as listed below, is defined in <code>/usr/local/cuda/samples/common/inc/helper_cuda.h</code>. In case a CUDA host call returns an error, it will output the proper CUDA error string to stderr, calls <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> to destroy all allocations and reset all state on the current device in the current process, and exits the program. Try to define your own <code>checkCudaErrors</code> macro for your particular applications.</p>
-          <pre id="checkError/checkCudaErrors.h"></pre>
-          <h2 id="matrixMul">matrixMul</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#global-memory-3-0">global memory</a> in a coalesced way and <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#shared-memory-3-0">shared memory</a> in a bank conflict-free way to accelerate matrix multiplication.</p>
-          <pre id="matrixMul/matrixMul.cu"></pre>
-          <p>Try using <code>double</code> instead of <code>float</code>.</p>
-          <p>Try using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gac27b566beee1aa9175373bb9e29b8d1">cudaDeviceSetCacheConfig</a> or <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EXECUTION.html#group__CUDART__EXECUTION_1g4f35d04be20a41c5df96613a748eecc1">cudaFuncSetCacheConfig</a> to set the sizes of L1 cache and shared memory out of 64KB.</p>
-          <p>Try using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g1a4789fb687cc36dccc98f25c96f0cd8">cudaDeviceSetSharedMemConfig</a> or <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EXECUTION.html#group__CUDART__EXECUTION_1gcb2e02dc6c75e4f705dfd2252748fe99">cudaFuncSetSharedMemConfig</a> to set shared memory bank width to be eight bytes natively.</p>
-          <p>Try using <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#shared">dynamic shared memory</a> which can have a dynamic size at run time.</p>
-          <p>Try using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g80d689bc903792f906e49be4a0b6d8db">cudaMallocPitch</a> to allocate a 2D array and <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g17f3a55e8c9aef5f90b67cdf22851375">cudaMemcpy2D</a> to copy a 2D array.</p>
-          <p>Try using <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#execution-configuration">memory fence functions</a> instead of <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#synchronization-functions">synchronization functions</a>.</p>
-          <p>Try rewriting the previous <a href="#bandwidthTest">bandwidthTest</a> sample using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EVENT.html#group__CUDART__EVENT_1ge31b1b1558db52579c9e23c5782af93e">cudaEventRecord</a> and <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EVENT.html#group__CUDART__EVENT_1g14c387cc57ce2e328f6669854e6020a5">cudaEventElapsedTime</a> instead of <code>shrDeltaT</code>.</p>
-          <h2 id="atomicAdd">atomicAdd</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#atomic-functions">atomic functions</a>, <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#assertion">assertions</a> and <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#formatted-output">printf</a>.</p>
-          <pre id="atomicAdd/atomicAdd.cu"></pre>
-          <p>Here are four possible output.</p>
+					<p>All the samples use the <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/">CUDA Runtime API</a>.</p>
+					<h2>Makefile</h2>
+					<p>A sample Makefile looks like this. Instead of <code>gcc</code>, it uses <code>nvcc</code> as CUDA compiler. The option <code>-arch</code> specifies the name of the class of nVidia GPU architectures for which the cuda input files must be compiled. Our K20m GPU architecture is <code>sm_35</code>. Refer to <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/inside-tesla-kepler-k20-family.pdf">Inside the Kepler Tesla K20 Family</a> for more detail.</p>
+					<pre id="vectorAdd/Makefile"></pre>
+					<h2 id="vectorAdd">vectorAdd</h2>
+					<p>This sample adds two vectors of floats.</p>
+					<pre id="vectorAdd/vectorAdd.cu"></pre>
+					<p>Try different values of <code>numElements</code> and <code>numThreadsPerBlock</code>.</p>
+					<h2 id="zeroCopy">zeroCopy</h2>
+					<p>This sample maps device pointers to pinned host memory so that kernels can directly read from and write to pinned host memory.</p>
+					<p>On <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#data-transfer-between-host-and-device">integrated systems</a> where device memory and host memory are physically the same, the mapping mechanism saves superfluous copies from host to device and from device to host.</p>
+					<p>On discrete systems where device memory and host memory are physically different, the mapping mechanism saves explicit copies from host to device and from device to host.</p>
+					<pre id="zeroCopy/zeroCopy.cu"></pre>
+					<p>Try passing the flag <code>cudaDeviceScheduleAuto</code> to <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g18074e885b4d89f5a0fe1beab589e0c8">cudaSetDeviceFlags</a>.</p>
+					<p>Try passing the flag <code>cudaHostAllocDefault</code> to <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g15a3871f15f8c38f5b7190946845758c">cudaHostAlloc</a> to allocate the memory as non-mapped.</p>
+					<h2 id="bandwidthTest">bandwidthTest</h2>
+					<p>This sample measures host-to-device and device-to-host bandwidth via PCIe for pageable and pinned memory of four transfer sizes of 3KB, 15KB, 15MB and 100MB, and outputs them in CSV format.</p>
+					<pre id="bandwidthTest/bandwidthTest.cu"></pre>
+					<p>Try different values of <code>sizes</code>.</p>
+					<p>Try <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g48efa06b81cc031b2aa6fdc2e9930741">cudaMemcpy</a> instead of <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gf2810a94ec08fe3c7ff9d93a33af7255">cudaMemcpyAsync</a> on pinned memory.</p>
+					<p>Try <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g36b9fe28f547f28d23742e8c7cd18141">cudaHostRegister</a> to register an existing host memory range as pinned memory, and <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gc07b1312c60ca36c118e2ed71b192afe">cudaHostUnregister</a> to unregister it after use.</p>
+					<p>Try passing the flag <code>cudaHostAllocWriteCombined</code> to <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g15a3871f15f8c38f5b7190946845758c">cudaHostAlloc</a> to allocate the memory as write-combined (WC).</p>
+					<h2 id="checkError">checkError</h2>
+					<p>This sample checks the return value of every runtime API. It requires <code>-I /usr/local/cuda/samples/common/inc</code> in the Makefile.</p>
+					<pre id="checkError/checkError.cu"></pre>
+					<p>Try setting <code>numElements</code> to 1e+10, and observe <code>cudaErrorMemoryAllocation</code>.</p>
+					<p>Try setting <code>numThreadsPerBlock</code> to 2560, and observe <code>cudaErrorInvalidConfiguration</code>.</p>
+					<p>Try accessing <code>a[i*2]</code> in the kernel, and observe <code>cudaErrorLaunchFailure</code>. Note the error line number at line 26 because kernel execution is asynchronous.</p>
+					<p>The <code>checkCudaErrors</code> macro, as listed below, is defined in <code>/usr/local/cuda/samples/common/inc/helper_cuda.h</code>. In case a CUDA host call returns an error, it will output the proper CUDA error string to stderr, calls <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> to destroy all allocations and reset all state on the current device in the current process, and exits the program. Try to define your own <code>checkCudaErrors</code> macro for your particular applications.</p>
+					<pre id="checkError/checkCudaErrors.h"></pre>
+					<h2 id="matrixMul">matrixMul</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#global-memory-3-0">global memory</a> in a coalesced way and <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#shared-memory-3-0">shared memory</a> in a bank conflict-free way to accelerate matrix multiplication.</p>
+					<pre id="matrixMul/matrixMul.cu"></pre>
+					<p>Try using <code>double</code> instead of <code>float</code>.</p>
+					<p>Try using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gac27b566beee1aa9175373bb9e29b8d1">cudaDeviceSetCacheConfig</a> or <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EXECUTION.html#group__CUDART__EXECUTION_1g4f35d04be20a41c5df96613a748eecc1">cudaFuncSetCacheConfig</a> to set the sizes of L1 cache and shared memory out of 64KB.</p>
+					<p>Try using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g1a4789fb687cc36dccc98f25c96f0cd8">cudaDeviceSetSharedMemConfig</a> or <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EXECUTION.html#group__CUDART__EXECUTION_1gcb2e02dc6c75e4f705dfd2252748fe99">cudaFuncSetSharedMemConfig</a> to set shared memory bank width to be eight bytes natively.</p>
+					<p>Try using <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#shared">dynamic shared memory</a> which can have a dynamic size at run time.</p>
+					<p>Try using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g80d689bc903792f906e49be4a0b6d8db">cudaMallocPitch</a> to allocate a 2D array and <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g17f3a55e8c9aef5f90b67cdf22851375">cudaMemcpy2D</a> to copy a 2D array.</p>
+					<p>Try using <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#execution-configuration">memory fence functions</a> instead of <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#synchronization-functions">synchronization functions</a>.</p>
+					<p>Try rewriting the previous <a href="#bandwidthTest">bandwidthTest</a> sample using <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EVENT.html#group__CUDART__EVENT_1ge31b1b1558db52579c9e23c5782af93e">cudaEventRecord</a> and <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EVENT.html#group__CUDART__EVENT_1g14c387cc57ce2e328f6669854e6020a5">cudaEventElapsedTime</a> instead of <code>shrDeltaT</code>.</p>
+					<h2 id="atomicAdd">atomicAdd</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#atomic-functions">atomic functions</a>, <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#assertion">assertions</a> and <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#formatted-output">printf</a>.</p>
+					<pre id="atomicAdd/atomicAdd.cu"></pre>
+					<p>Here are four possible output.</p>
 <pre class="sh">
 blockIdx.x = 0, sum = 1
 blockIdx.x = 1, sum = 4
@@ -174,30 +174,30 @@ blockIdx.x = 1, sum = 1
 blockIdx.x = 0, sum = 7
 sum = 13
 </pre>
-          <p>Try different numbers of threads per block and different numbers of blocks per grid.</p>
-          <p>Try atomic functions on shared memory, and compare the performance to atomic functions on global memory.</p>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3101-Atomic-Memory-Operations.pdf">Understanding and Using Atomic Memory Operations</a> for more detail.</p>
-          <h2 id="asyncEngine">asyncEngine</h2>
-          <p>This sample uses asynchronous engines to overlap data transfer and kernel execution.</p>
-          <pre id="asyncEngine/asyncEngine.cu"></pre>
-          <h2 id="hyperQ">hyperQ</h2>
-          <p>This sample uses multiple streams to overlap multiple kernel executions, known as the <a href="http://docs.nvidia.com/cuda/samples/6_Advanced/simpleHyperQ/doc/HyperQ.pdf">HyperQ</a> technology.</p>
-          <pre id="hyperQ/hyperQ.cu"></pre>
-          <p>Try different values of <code>numMilliseconds</code>, <code>numKernels</code> and <code>numStreams</code>.</p>
-          <p>Try different numbers of threads per block, different numbers of blocks per grid, and different sizes of dynamic shared memory.</p>
-          <p>Try double buffering.</p>
-          <h2 id="deviceQuery">deviceQuery</h2>
-          <p>This sample enumerates some properties of the CUDA devices present in the system.</p>
-          <pre id="deviceQuery/deviceQuery.cu"></pre>
-          <p>Try enumerating all the properties returned by <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g929dcd9a191e17b7498e7ccaa3d16350">cudaGetDeviceProperties</a> of all the devices.</p>
-          <h2 id="multiDevice">multiDevice</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g418c299b069c4803bfb7cab4943da383">cudaSetDevice</a> within a single thread to utilize multiple GPUs.</p>
-          <pre id="multiDevice/multiDevice.cu"></pre>
-          <p>Try using <code>valgrind</code> to detect memory leak in the following 3 cases of cleanup.</p>
+					<p>Try different numbers of threads per block and different numbers of blocks per grid.</p>
+					<p>Try atomic functions on shared memory, and compare the performance to atomic functions on global memory.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3101-Atomic-Memory-Operations.pdf">Understanding and Using Atomic Memory Operations</a> for more detail.</p>
+					<h2 id="asyncEngine">asyncEngine</h2>
+					<p>This sample uses asynchronous engines to overlap data transfer and kernel execution.</p>
+					<pre id="asyncEngine/asyncEngine.cu"></pre>
+					<h2 id="hyperQ">hyperQ</h2>
+					<p>This sample uses multiple streams to overlap multiple kernel executions, known as the <a href="http://docs.nvidia.com/cuda/samples/6_Advanced/simpleHyperQ/doc/HyperQ.pdf">HyperQ</a> technology.</p>
+					<pre id="hyperQ/hyperQ.cu"></pre>
+					<p>Try different values of <code>numMilliseconds</code>, <code>numKernels</code> and <code>numStreams</code>.</p>
+					<p>Try different numbers of threads per block, different numbers of blocks per grid, and different sizes of dynamic shared memory.</p>
+					<p>Try double buffering.</p>
+					<h2 id="deviceQuery">deviceQuery</h2>
+					<p>This sample enumerates some properties of the CUDA devices present in the system.</p>
+					<pre id="deviceQuery/deviceQuery.cu"></pre>
+					<p>Try enumerating all the properties returned by <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g929dcd9a191e17b7498e7ccaa3d16350">cudaGetDeviceProperties</a> of all the devices.</p>
+					<h2 id="multiDevice">multiDevice</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g418c299b069c4803bfb7cab4943da383">cudaSetDevice</a> within a single thread to utilize multiple GPUs.</p>
+					<pre id="multiDevice/multiDevice.cu"></pre>
+					<p>Try using <code>valgrind</code> to detect memory leak in the following 3 cases of cleanup.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/multiDevice></b> valgrind ./multiDevice
 </pre>
-          <p>Case 1: <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> is called on every device.</p>
+					<p>Case 1: <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> is called on every device.</p>
 <pre class="cpp">
 	for (int i = 0; i &lt; numDevices; ++i)
 	{
@@ -217,7 +217,7 @@ sum = 13
 ==53804==    still reachable: 340,147 bytes in 97 blocks
 ==53804==         suppressed: 0 bytes in 0 blocks
 </pre>
-          <p>Case 2: <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> is called on one device.</p>
+					<p>Case 2: <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> is called on one device.</p>
 <pre class="cpp">
 //	for (int i = 0; i &lt; numDevices; ++i)
 //	{
@@ -237,7 +237,7 @@ sum = 13
 ==53860==    still reachable: 6,979,097 bytes in 11,391 blocks
 ==53860==         suppressed: 0 bytes in 0 blocks
 </pre>
-          <p>Case 3: <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> is not called at all.</p>
+					<p>Case 3: <a href="http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1gdcc2c6f914eb9461565b12648faa5e28">cudaDeviceReset</a> is not called at all.</p>
 <pre class="cpp">
 //	for (int i = 0; i &lt; numDevices; ++i)
 //	{
@@ -257,92 +257,92 @@ sum = 13
 ==53911==    still reachable: 10,314,964 bytes in 17,167 blocks
 ==53911==         suppressed: 0 bytes in 0 blocks
 </pre>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3465-Multi-GPU-Programming.pdf">Multi-GPU Programming</a> for more detail.</p>
-          <h2 id="openmp">openmp</h2>
-          <p>This sample uses OpenMP to create multiple CPU threads to utilize multiple GPUs.</p>
-          <pre id="openmp/openmp.cu"></pre>
-          <p>In the Makefile, pass the compiler option <code>-Xcompiler -fopenmp</code> to <code>nvcc</code> in both compilation and linking.</p>
-          <pre id="openmp/Makefile"></pre>
-          <p>Try <code>omp_set_num_threads(numDevices*2);</code> to create twice as many CPU threads as there are CUDA devices. In this case two threads will be allocating resources and launching kernels on the same device.</p>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-webinar-openacc-vs-openmp.pdf">OpenACC 2.0 vs OpenMP 4.0 Programming Comparison</a> for more detail.</p>
-          <h2 id="mpi">mpi</h2>
-          <p>This sample uses MPI to create multiple CPU processes to utilize multiple GPUs.</p>
-          <pre id="mpi/mpi.cu"></pre>
-          <p>In the Makefile, pass the compiler option <code>-I /opt/mvapich2-2.0b/include</code> to <code>nvcc</code> in compilation and <code>-L /opt/mvapich2-2.0b/lib -lmpich</code> to <code>nvcc</code> in linking.</p>
-          <pre id="mpi/Makefile"></pre>
-          <p>Specify the hosts to use in a host file.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3465-Multi-GPU-Programming.pdf">Multi-GPU Programming</a> for more detail.</p>
+					<h2 id="openmp">openmp</h2>
+					<p>This sample uses OpenMP to create multiple CPU threads to utilize multiple GPUs.</p>
+					<pre id="openmp/openmp.cu"></pre>
+					<p>In the Makefile, pass the compiler option <code>-Xcompiler -fopenmp</code> to <code>nvcc</code> in both compilation and linking.</p>
+					<pre id="openmp/Makefile"></pre>
+					<p>Try <code>omp_set_num_threads(numDevices*2);</code> to create twice as many CPU threads as there are CUDA devices. In this case two threads will be allocating resources and launching kernels on the same device.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-webinar-openacc-vs-openmp.pdf">OpenACC 2.0 vs OpenMP 4.0 Programming Comparison</a> for more detail.</p>
+					<h2 id="mpi">mpi</h2>
+					<p>This sample uses MPI to create multiple CPU processes to utilize multiple GPUs.</p>
+					<pre id="mpi/mpi.cu"></pre>
+					<p>In the Makefile, pass the compiler option <code>-I /opt/mvapich2-2.0b/include</code> to <code>nvcc</code> in compilation and <code>-L /opt/mvapich2-2.0b/lib -lmpich</code> to <code>nvcc</code> in linking.</p>
+					<pre id="mpi/Makefile"></pre>
+					<p>Specify the hosts to use in a host file.</p>
 <pre id="mpi/hosts">
 <b class="text-info">hjli@hpc1:~/cudart/mpi></b> cat hosts
 </pre>
-          <p>Run the executable with <code>mpirun_rsh</code>. Specify the host file and the number of processes to run with the option <code>-n</code>.</p>
+					<p>Run the executable with <code>mpirun_rsh</code>. Specify the host file and the number of processes to run with the option <code>-n</code>.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/mpi></b> mpirun_rsh -hostfile hosts -n 4 ./mpi
 </pre>
-          <p>Try using <code>float</code> instead of <code>int</code>.</p>
-          <p>Try writing a reduce kernel to compute the sum of the current node.</p>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3047-Intro-CUDA-Aware-MPI-NVIDIA-GPUDirect.pdf">Introduction to CUDA-aware MPI and NVIDIA GPUDirect</a>, <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3266-GPUDirect-RDMA-Green-Multi-GPU-Architectures.pdf">GPUDirect RDMA and Green Multi-GPU Architectures</a>, <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3316-MVAPICH2-High-Performance-MPI-Library.pdf">MVAPICH2: A High Performance MPI Library for NVIDIA GPU Clusters with InfiniBand </a> and <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-gpudirect-rdma.pdf">Accelerating High Performance Computing with GPUDirect RDMA</a> for more detail.</p>
-          <h2 id="cublas">cublas</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/cublas/">CUBLAS</a>, a CUDA implementation of BLAS (Basic Linear Algebra Subprograms), for matrix multiplication.</p>
-          <pre id="cublas/cublas.cu"></pre>
-          <p><a href="http://docs.nvidia.com/cuda/cufft/">CUFFT</a> is a CUDA implementation of FFT (Fast Fourier Transform).</p>
-          <p><a href="http://docs.nvidia.com/cuda/curand/">CURAND</a> is a CUDA implementation of PRNG (PseudoRandom Number Generator) and QRNG (QuasiRandom Number Generator).</p>
-          <p><a href="http://docs.nvidia.com/cuda/cusparse/">CUSPARSE</a> is a CUDA implementation of basic linear algebra subroutines for sparse matrices.</p>
-          <p><a href="https://developer.nvidia.com/magma">MAGMA</a> is a third-party CUDA implementation of next generation LA (Linear Algebra) by the team that developed LAPACK and ScaLAPACK.</p>
-          <p><a href="https://developer.nvidia.com/paralution">PARALUTION</a> is a third-party CUDA implementation of sparse iterative methods.</p>
-          <p><a href="http://viennacl.sourceforge.net">ViennaCL</a> is a free open-source linear algebra library for computations on many-core architectures (GPUs, MIC) and multi-core CPUs.</p>
-          <p>More GPU-accelerated libraries can be found at <a href="https://developer.nvidia.com/gpu-accelerated-libraries">https://developer.nvidia.com/gpu-accelerated-libraries</a>.</p>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3461-CUDA-Accelerated-Compute-Libraries.pdf">CUDA Accelerated Compute Libraries</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2013/presentations/cuda--5.0-math-libraries-performance.pdf">CUDA 5 Math Library Performance Overview</a> for more detail.</p>
-          <h2 id="thrust">thrust</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a>, a CUDA implementation of STL (Standard Template Library), for vector reduction.</p>
-          <pre id="thrust/thrust.cu"></pre>
-          <p><a href="https://github.com/HSA-Libraries/Bolt">Bolt</a> is a C++ template library optimized for heterogeneous computing and developed by AMD.</p>
-          <p><a href="http://www.accelereyes.com/products/arrayfire">ArrayFire</a> is a fast software library for GPU computing with an easy-to-use API. Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-arrayfire-for-defense-intelligence-applications.pdf">ArrayFire: A Productive GPU Software Library for Defense and Intelligence Applications</a> for more detail.</p>
-          <p><a href="https://github.com/ddemidov/vexcl">VexCL</a> is a vector expression template library for OpenCL/CUDA.</p>
-          <p><a href="https://github.com/kylelutz/compute">Boost.Compute</a> is a GPU/parallel-computing library for C++ based on OpenCL.</p>
-          <h2 id="saxpy">saxpy</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to implement the SAXPY operation Y[i] = a * X[i] + Y[i] where X and Y are vectors and a is a scalar constant.</p>
-          <pre id="saxpy/saxpy.cu"></pre>
-          <p>Thrust API references are available at <a href="http://thrust.github.io/doc">http://thrust.github.io/doc</a>.</p>
-          <h2 id="sum">sum</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute the sum of a vector.</p>
-          <pre id="sum/sum.cu"></pre>
-          <h2 id="norm">norm</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute the norm of a vector. The norm is computed by squaring all numbers in the vector, summing the squares, and taking the square root of the sum of squares.</p>
-          <pre id="norm/norm.cu"></pre>
-          <h2 id="piEstimate">piEstimate</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to estimate the value of π through tremendous Monte Carlo simulations.</p>
-          <pre id="piEstimate/piEstimate.cu"></pre>
-          <h2 id="maxSquaredDiff">maxSquaredDiff</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute the maximum squared difference between the elements of two vectors.</p>
-          <pre id="maxSquaredDiff/maxSquaredDiff.cu"></pre>
-          <h2 id="wordCount">wordCount</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to count the number of words in a text sample. A word has the characteristic that text[i] is an alphabetical character and text[i-1] is not an alphabetical character.</p>
-          <pre id="wordCount/wordCount.cu"></pre>
-          <h2 id="conditionalCopy">conditionalCopy</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute indices for all the nonzero values in a sequence.</p>
-          <pre id="conditionalCopy/conditionalCopy.cu"></pre>
-          <h2 id="arbitraryTransformation">arbitraryTransformation</h2>
-          <p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to implement an arbitrary transformation of at most 10 elements.</p>
-          <pre id="arbitraryTransformation/arbitraryTransformation.cu"></pre>
-          <p>Refer to the thrust wiki for a <a href="https://github.com/thrust/thrust/wiki/Quick-Start-Guide">quick start guide</a>.</p>
-          <p>There are 3 backend implementations of host_vector: CPP, OMP and TBB. Refer to <code>${CUDA_ROOT}/include/thrust/detail/config/host_systme.h</code> for their definitions.</p>
-          <p>There are 4 backend implementations of device_vector: CUDA, OMP, TBB and CPP. Refer to <code>${CUDA_ROOT}/include/thrust/detail/config/device_systme.h</code> for their definitions.</p>
-          <p>Redefining THRUST_HOST_SYSTEM and THRUST_DEVICE_SYSTEM switches the backend implementations of host_vector and device_vector respectively. <code>nvcc</code> is required only when the CUDA backend is requested. Otherwise <code>g++</code> will do and the <code>.cu</code> extension should be changed to <code>.cpp</code>.</p>
-          <p><code>g++ -I${CUDA_ROOT}/include -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP arbitraryTransformation.cpp -fopenmp</code></p>
-          <p><code>g++ -I${CUDA_ROOT}/include -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_TBB arbitraryTransformation.cpp -ltbb</code>.</p>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="page-header">
-        <h2>Tools</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <h2 id="nvcc">Compiler: nvcc</h2>
-          <p>This figure shows the internal structure of the various CUDA compilation phases. It is reprinted from <a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/graphics/cuda-compilation-from-cu-to-cu-cpp-ii.png">http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/graphics/cuda-compilation-from-cu-to-cu-cpp-ii.png</a>.</p>
-          <p><img class="img-responsive" src="../grey.gif" data-original="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/graphics/cuda-compilation-from-cu-to-cu-cpp-ii.png" alt="nvcc"></p>
-          <p>The <code>cudafe++</code> front end preprocessor will be called multiple times.</p>
+					<p>Try using <code>float</code> instead of <code>int</code>.</p>
+					<p>Try writing a reduce kernel to compute the sum of the current node.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3047-Intro-CUDA-Aware-MPI-NVIDIA-GPUDirect.pdf">Introduction to CUDA-aware MPI and NVIDIA GPUDirect</a>, <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3266-GPUDirect-RDMA-Green-Multi-GPU-Architectures.pdf">GPUDirect RDMA and Green Multi-GPU Architectures</a>, <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3316-MVAPICH2-High-Performance-MPI-Library.pdf">MVAPICH2: A High Performance MPI Library for NVIDIA GPU Clusters with InfiniBand </a> and <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-gpudirect-rdma.pdf">Accelerating High Performance Computing with GPUDirect RDMA</a> for more detail.</p>
+					<h2 id="cublas">cublas</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/cublas/">CUBLAS</a>, a CUDA implementation of BLAS (Basic Linear Algebra Subprograms), for matrix multiplication.</p>
+					<pre id="cublas/cublas.cu"></pre>
+					<p><a href="http://docs.nvidia.com/cuda/cufft/">CUFFT</a> is a CUDA implementation of FFT (Fast Fourier Transform).</p>
+					<p><a href="http://docs.nvidia.com/cuda/curand/">CURAND</a> is a CUDA implementation of PRNG (PseudoRandom Number Generator) and QRNG (QuasiRandom Number Generator).</p>
+					<p><a href="http://docs.nvidia.com/cuda/cusparse/">CUSPARSE</a> is a CUDA implementation of basic linear algebra subroutines for sparse matrices.</p>
+					<p><a href="https://developer.nvidia.com/magma">MAGMA</a> is a third-party CUDA implementation of next generation LA (Linear Algebra) by the team that developed LAPACK and ScaLAPACK.</p>
+					<p><a href="https://developer.nvidia.com/paralution">PARALUTION</a> is a third-party CUDA implementation of sparse iterative methods.</p>
+					<p><a href="http://viennacl.sourceforge.net">ViennaCL</a> is a free open-source linear algebra library for computations on many-core architectures (GPUs, MIC) and multi-core CPUs.</p>
+					<p>More GPU-accelerated libraries can be found at <a href="https://developer.nvidia.com/gpu-accelerated-libraries">https://developer.nvidia.com/gpu-accelerated-libraries</a>.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3461-CUDA-Accelerated-Compute-Libraries.pdf">CUDA Accelerated Compute Libraries</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2013/presentations/cuda--5.0-math-libraries-performance.pdf">CUDA 5 Math Library Performance Overview</a> for more detail.</p>
+					<h2 id="thrust">thrust</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a>, a CUDA implementation of STL (Standard Template Library), for vector reduction.</p>
+					<pre id="thrust/thrust.cu"></pre>
+					<p><a href="https://github.com/HSA-Libraries/Bolt">Bolt</a> is a C++ template library optimized for heterogeneous computing and developed by AMD.</p>
+					<p><a href="http://www.accelereyes.com/products/arrayfire">ArrayFire</a> is a fast software library for GPU computing with an easy-to-use API. Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-arrayfire-for-defense-intelligence-applications.pdf">ArrayFire: A Productive GPU Software Library for Defense and Intelligence Applications</a> for more detail.</p>
+					<p><a href="https://github.com/ddemidov/vexcl">VexCL</a> is a vector expression template library for OpenCL/CUDA.</p>
+					<p><a href="https://github.com/kylelutz/compute">Boost.Compute</a> is a GPU/parallel-computing library for C++ based on OpenCL.</p>
+					<h2 id="saxpy">saxpy</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to implement the SAXPY operation Y[i] = a * X[i] + Y[i] where X and Y are vectors and a is a scalar constant.</p>
+					<pre id="saxpy/saxpy.cu"></pre>
+					<p>Thrust API references are available at <a href="http://thrust.github.io/doc">http://thrust.github.io/doc</a>.</p>
+					<h2 id="sum">sum</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute the sum of a vector.</p>
+					<pre id="sum/sum.cu"></pre>
+					<h2 id="norm">norm</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute the norm of a vector. The norm is computed by squaring all numbers in the vector, summing the squares, and taking the square root of the sum of squares.</p>
+					<pre id="norm/norm.cu"></pre>
+					<h2 id="piEstimate">piEstimate</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to estimate the value of π through tremendous Monte Carlo simulations.</p>
+					<pre id="piEstimate/piEstimate.cu"></pre>
+					<h2 id="maxSquaredDiff">maxSquaredDiff</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute the maximum squared difference between the elements of two vectors.</p>
+					<pre id="maxSquaredDiff/maxSquaredDiff.cu"></pre>
+					<h2 id="wordCount">wordCount</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to count the number of words in a text sample. A word has the characteristic that text[i] is an alphabetical character and text[i-1] is not an alphabetical character.</p>
+					<pre id="wordCount/wordCount.cu"></pre>
+					<h2 id="conditionalCopy">conditionalCopy</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to compute indices for all the nonzero values in a sequence.</p>
+					<pre id="conditionalCopy/conditionalCopy.cu"></pre>
+					<h2 id="arbitraryTransformation">arbitraryTransformation</h2>
+					<p>This sample uses <a href="http://docs.nvidia.com/cuda/thrust/">thrust</a> to implement an arbitrary transformation of at most 10 elements.</p>
+					<pre id="arbitraryTransformation/arbitraryTransformation.cu"></pre>
+					<p>Refer to the thrust wiki for a <a href="https://github.com/thrust/thrust/wiki/Quick-Start-Guide">quick start guide</a>.</p>
+					<p>There are 3 backend implementations of host_vector: CPP, OMP and TBB. Refer to <code>${CUDA_ROOT}/include/thrust/detail/config/host_systme.h</code> for their definitions.</p>
+					<p>There are 4 backend implementations of device_vector: CUDA, OMP, TBB and CPP. Refer to <code>${CUDA_ROOT}/include/thrust/detail/config/device_systme.h</code> for their definitions.</p>
+					<p>Redefining THRUST_HOST_SYSTEM and THRUST_DEVICE_SYSTEM switches the backend implementations of host_vector and device_vector respectively. <code>nvcc</code> is required only when the CUDA backend is requested. Otherwise <code>g++</code> will do and the <code>.cu</code> extension should be changed to <code>.cpp</code>.</p>
+					<p><code>g++ -I${CUDA_ROOT}/include -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_OMP arbitraryTransformation.cpp -fopenmp</code></p>
+					<p><code>g++ -I${CUDA_ROOT}/include -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_TBB arbitraryTransformation.cpp -ltbb</code>.</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Tools</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h2 id="nvcc">Compiler: nvcc</h2>
+					<p>This figure shows the internal structure of the various CUDA compilation phases. It is reprinted from <a href="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/graphics/cuda-compilation-from-cu-to-cu-cpp-ii.png">http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/graphics/cuda-compilation-from-cu-to-cu-cpp-ii.png</a>.</p>
+					<p><img class="img-responsive" src="../grey.gif" data-original="http://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/graphics/cuda-compilation-from-cu-to-cu-cpp-ii.png" alt="nvcc"></p>
+					<p>The <code>cudafe++</code> front end preprocessor will be called multiple times.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~></b> echo "int main() { int dummy; }" > test.cu
 <b class="text-info">hjli@hpc1:~></b> nvcc -arch=sm_35 test.cu
@@ -351,7 +351,7 @@ test.cu(1): warning: variable "dummy" was declared but never referenced
 test.cu(1): warning: variable "dummy" was declared but never referenced
 
 </pre>
-          <p>The <code>-ptx</code> option generates <a href="http://docs.nvidia.com/cuda/parallel-thread-execution/index.html">ptx</a>. The <code>-cubin</code> option generates cubin. The <code>-fatbin</code> option generates fatbin.</p>
+					<p>The <code>-ptx</code> option generates <a href="http://docs.nvidia.com/cuda/parallel-thread-execution/index.html">ptx</a>. The <code>-cubin</code> option generates cubin. The <code>-fatbin</code> option generates fatbin.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> nvcc -arch=sm_35 -ptx vectorAdd.cu
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> nvcc -arch=sm_35 -cubin vectorAdd.ptx
@@ -361,7 +361,7 @@ test.cu(1): warning: variable "dummy" was declared but never referenced
 -rw-rw-r--. 1 hjli hjli   1868 Oct 18 03:18 vectorAdd.cubin
 -rw-rw-r--. 1 hjli hjli   2680 Oct 18 03:20 vectorAdd.fatbin
 </pre>
-          <p><code>ptxas</code> assemblies ptx into object. The option <code>-v</code> prints code generation statistics.</p>
+					<p><code>ptxas</code> assemblies ptx into object. The option <code>-v</code> prints code generation statistics.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> ptxas -arch=sm_35 -v vectorAdd.ptx
 ptxas info    : 0 bytes gmem
@@ -370,19 +370,19 @@ ptxas info    : Function properties for _Z9vectorAddPKfS0_Pfi
     0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
 ptxas info    : Used 10 registers, 348 bytes cmem[0]
 </pre>
-          <p>The <a href="http://docs.nvidia.com/cuda/cuda-driver-api/">CUDA Driver API</a> can JIT (Just-In-Time) compile ptx for forward compatibility. It is much analogue to <a href="http://www.khronos.org/opencl">OpenCL</a>. Refer to <a href="https://github.com/HongjianLi/cuda">https://github.com/HongjianLi/cuda</a> and <a href="https://github.com/HongjianLi/opencl">https://github.com/HongjianLi/opencl</a> for samples.</p>
+					<p>The <a href="http://docs.nvidia.com/cuda/cuda-driver-api/">CUDA Driver API</a> can JIT (Just-In-Time) compile ptx for forward compatibility. It is much analogue to <a href="http://www.khronos.org/opencl">OpenCL</a>. Refer to <a href="https://github.com/HongjianLi/cuda">https://github.com/HongjianLi/cuda</a> and <a href="https://github.com/HongjianLi/opencl">https://github.com/HongjianLi/opencl</a> for samples.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~></b> git clone https://github.com/HongjianLi/cuda.git
 <b class="text-info">hjli@hpc1:~></b> git clone https://github.com/HongjianLi/opencl.git
 </pre>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/cuda-toolkit-as-build-tool.pdf">Introduction to the CUDA Toolkit as an Application Build Tool</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/gpu-object-linking.pdf">GPU Object Linking: Usage and Benefits</a> for more detail.</p>
-          <h2 id="cuda-gdb">Debugger: cuda-gdb & cuda-gdbserver</h2>
-          <p>Compiling an application with the options <code>-g</code> and <code>-G</code> embeds debug information for the host code and the device code, respectively.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/cuda-toolkit-as-build-tool.pdf">Introduction to the CUDA Toolkit as an Application Build Tool</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/gpu-object-linking.pdf">GPU Object Linking: Usage and Benefits</a> for more detail.</p>
+					<h2 id="cuda-gdb">Debugger: cuda-gdb & cuda-gdbserver</h2>
+					<p>Compiling an application with the options <code>-g</code> and <code>-G</code> embeds debug information for the host code and the device code, respectively.</p>
 <pre id="vectorAdd/vectorAdd.gdb">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> nvcc -arch=sm_35 -g -G vectorAdd.cu
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> cuda-gdb ./vectorAdd
 </pre>
-          <p>Remote debugging is also possible.</p>
+					<p>Remote debugging is also possible.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> cuda-gdbserver :3001 ./vectorAdd
 Process ./vectorAdd created; pid = 48918
@@ -405,9 +405,9 @@ For bug reporting instructions, please see:
 Reading symbols from /home/hjli/cudart/vectorAdd/vectorAdd...done.
 (cuda-gdb) target remote hpc1:3001
 </pre>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3037-S3038-Debugging-CUDA-Apps-Linux-Mac.pdf">Debugging CUDA Applications on Linux and Mac</a> for more detail.</p>
-          <h2 id="nvprof">Profilers: nvprof & nvvp</h2>
-          <p><code>nvprof</code> is a command-line profiler. <code>nvvp</code> is a visual profiler.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3037-S3038-Debugging-CUDA-Apps-Linux-Mac.pdf">Debugging CUDA Applications on Linux and Mac</a> for more detail.</p>
+					<h2 id="nvprof">Profilers: nvprof & nvvp</h2>
+					<p><code>nvprof</code> is a command-line profiler. <code>nvvp</code> is a visual profiler.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/asyncEngine></b> nvprof -o %h-%p.nvprof ./asyncEngine
 <b class="text-info">hjli@hpc1:~/cudart/asyncEngine></b> nvprof -i hpc1-47304.nvprof --print-api-trace
@@ -451,16 +451,16 @@ Regs: Number of registers used per CUDA thread.
 SSMem: Static shared memory allocated per CUDA block.
 DSMem: Dynamic shared memory allocated per CUDA block.
 </pre>
-          <p><code>nvvp</code> can import *.nvprof and visualize the timeline data. File -> Import -> Nvprof -> Timeline data file -> Finish. Zoom in the main part.</p>
-          <p><img class="img-responsive" src="../grey.gif" data-original="hpc1-47304.png" alt="nvprof"></p>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-guided-analysis-nvidia-visual-profiler.pdf">Guided Performance Analysis with NVIDIA Visual Profiler</a>, <a href="http://on-demand.gputechconf.com/gtc/2012/presentations/S0419B-GTC2012-Profiling-Profiling-Tools.pdf">Optimizing Application Performance with CUDA Profiling Tools</a> and <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3046-Performance-Optimization-Strategies-for-GPU-Accelerated-Apps.pdf">Performance Optimization Strategies For GPU-Accelerated Applications</a> for more detail.</p>
-          <h2 id="nsight">IDE: Nsight</h2>
-          <p><a href="https://developer.nvidia.com/nvidia-nsight-visual-studio-edition">Visual Studio Edition for Windows</a> and <a href="https://developer.nvidia.com/nsight-eclipse-edition">Eclipse Edition for Linux</a>.</p>
-          <p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3011-CUDA-Optimization-With-Nsight-VSE.pdf">CUDA Optimization with NVIDIA Nsight Visual Studio Edition 3.0</a>, <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3478-Debugging-CUDA-Kernel-Code.pdf">Debugging CUDA Kernel Code with NVIDIA Nsight Visual Studio Edition</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/nsight-eclipse-edition.pdf">Nsight Eclipse Edition: High Productivity IDE for CUDA Development on Linux & MacOS</a> for more detail.</p>
-          <h2 id="CUDA_Occupancy_Calculator.xls">CUDA_Occupancy_Calculator.xls</h2>
-          <p>It calculates the theoretical percentage for which kernels occupy a device. The higher the occupancy, the higher the GPU utilization. The Excel file is located in <code>/usr/local/cuda/tools</code>.</p>
-          <h2 id="nvidia-smi">Monitor: nvidia-smi</h2>
-          <p><a href="https://developer.nvidia.com/nvidia-system-management-interface">nvidia-smi</a> allows administrators to query GPU device state and with the appropriate privileges, permits administrators to modify GPU device state.</p>
+					<p><code>nvvp</code> can import *.nvprof and visualize the timeline data. File -> Import -> Nvprof -> Timeline data file -> Finish. Zoom in the main part.</p>
+					<p><img class="img-responsive" src="../grey.gif" data-original="hpc1-47304.png" alt="nvprof"></p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/webinar/gtc-express-guided-analysis-nvidia-visual-profiler.pdf">Guided Performance Analysis with NVIDIA Visual Profiler</a>, <a href="http://on-demand.gputechconf.com/gtc/2012/presentations/S0419B-GTC2012-Profiling-Profiling-Tools.pdf">Optimizing Application Performance with CUDA Profiling Tools</a> and <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3046-Performance-Optimization-Strategies-for-GPU-Accelerated-Apps.pdf">Performance Optimization Strategies For GPU-Accelerated Applications</a> for more detail.</p>
+					<h2 id="nsight">IDE: Nsight</h2>
+					<p><a href="https://developer.nvidia.com/nvidia-nsight-visual-studio-edition">Visual Studio Edition for Windows</a> and <a href="https://developer.nvidia.com/nsight-eclipse-edition">Eclipse Edition for Linux</a>.</p>
+					<p>Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3011-CUDA-Optimization-With-Nsight-VSE.pdf">CUDA Optimization with NVIDIA Nsight Visual Studio Edition 3.0</a>, <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3478-Debugging-CUDA-Kernel-Code.pdf">Debugging CUDA Kernel Code with NVIDIA Nsight Visual Studio Edition</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/nsight-eclipse-edition.pdf">Nsight Eclipse Edition: High Productivity IDE for CUDA Development on Linux & MacOS</a> for more detail.</p>
+					<h2 id="CUDA_Occupancy_Calculator.xls">CUDA_Occupancy_Calculator.xls</h2>
+					<p>It calculates the theoretical percentage for which kernels occupy a device. The higher the occupancy, the higher the GPU utilization. The Excel file is located in <code>/usr/local/cuda/tools</code>.</p>
+					<h2 id="nvidia-smi">Monitor: nvidia-smi</h2>
+					<p><a href="https://developer.nvidia.com/nvidia-system-management-interface">nvidia-smi</a> allows administrators to query GPU device state and with the appropriate privileges, permits administrators to modify GPU device state.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~></b> nvidia-smi
 Tue Sep 10 10:39:25 2013       
@@ -487,11 +487,11 @@ Tue Sep 10 10:39:25 2013
 |  No running compute processes found                                         |
 +-----------------------------------------------------------------------------+
 </pre> 
-          <p><a href="https://developer.nvidia.com/nvidia-management-library-nvml">NVML</a> is a C-based API for monitoring and managing various states of the NVIDIA GPU devices. It provides a direct access to the queries and commands exposed via <a href="https://developer.nvidia.com/nvidia-system-management-interface">nvidia-smi</a>. They both are parts of the <a href="https://developer.nvidia.com/tesla-deployment-kit">Tesla Deployment Kit</a>. Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3044-GPUs-in-Cluster-Environments.pdf">Monitoring and Managing NVIDIA GPUs in Cluster Environments</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/deploying-managing-gpu-clusters.pdf">Best Practices for Deploying and Managing GPU Clusters</a> for more detail.</p>
-          <h2 id="cuda-memcheck">Sanitizer: cuda-memcheck</h2>
-          <p><a href="http://docs.nvidia.com/cuda/cuda-memcheck/">CUDA-MEMCHECK</a> is a functional correctness checking suite. The demo code here suffers from unaligned access and out-of-bound access.</p>
-          <pre id="memcheckDemo/memcheckDemo.cu"></pre>
-          <p>Compile the demo code with option <code>-Xcompiler -rdynamic</code>, and invoke <code>cuda-memcheck</code>.</p>
+					<p><a href="https://developer.nvidia.com/nvidia-management-library-nvml">NVML</a> is a C-based API for monitoring and managing various states of the NVIDIA GPU devices. It provides a direct access to the queries and commands exposed via <a href="https://developer.nvidia.com/nvidia-system-management-interface">nvidia-smi</a>. They both are parts of the <a href="https://developer.nvidia.com/tesla-deployment-kit">Tesla Deployment Kit</a>. Refer to <a href="http://on-demand.gputechconf.com/gtc/2013/presentations/S3044-GPUs-in-Cluster-Environments.pdf">Monitoring and Managing NVIDIA GPUs in Cluster Environments</a> and <a href="http://on-demand.gputechconf.com/gtc-express/2012/presentations/deploying-managing-gpu-clusters.pdf">Best Practices for Deploying and Managing GPU Clusters</a> for more detail.</p>
+					<h2 id="cuda-memcheck">Sanitizer: cuda-memcheck</h2>
+					<p><a href="http://docs.nvidia.com/cuda/cuda-memcheck/">CUDA-MEMCHECK</a> is a functional correctness checking suite. The demo code here suffers from unaligned access and out-of-bound access.</p>
+					<pre id="memcheckDemo/memcheckDemo.cu"></pre>
+					<p>Compile the demo code with option <code>-Xcompiler -rdynamic</code>, and invoke <code>cuda-memcheck</code>.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/memcheckDemo></b> cuda-memcheck ./memcheckDemo
 ========= CUDA-MEMCHECK
@@ -567,16 +567,16 @@ Sync: unspecified launch failure
 =========
 ========= ERROR SUMMARY: 6 errors
 </pre>
-          <p>Specify the option <code>--leak-check full</code> to print information about the allocations that have not been freed at the time the CUDA context is destroyed.</p>
+					<p>Specify the option <code>--leak-check full</code> to print information about the allocations that have not been freed at the time the CUDA context is destroyed.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/memcheckDemo></b> cuda-memcheck --leak-check full ./memcheckDemo
 </pre>
-          <p>Specify the option <code>--tool racecheck</code> to help identify memory access race conditions in CUDA applications that use shared memory.</p>
+					<p>Specify the option <code>--tool racecheck</code> to help identify memory access race conditions in CUDA applications that use shared memory.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/memcheckDemo></b> cuda-memcheck --tool racecheck ./memcheckDemo
 </pre>
-          <h2 id="nvdisasm">Disassemblers: cuobjdump & nvdisasm</h2>
-          <p><a href="http://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#cuobjdump">cuobjdump</a> extracts information from CUDA binary files (both standalone and those embedded in host binaries) and presents them in human readable format.</p>
+					<h2 id="nvdisasm">Disassemblers: cuobjdump & nvdisasm</h2>
+					<p><a href="http://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#cuobjdump">cuobjdump</a> extracts information from CUDA binary files (both standalone and those embedded in host binaries) and presents them in human readable format.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> cuobjdump ./vectorAdd.fatbin
 
@@ -599,7 +599,7 @@ compile_size = 64bit
 compressed
 identifier = vectorAdd.cu
 </pre>
-          <p><a href="http://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#nvdisasm">nvdisasm</a> extracts information from standalone cubin files and presents them in human readable format.</p>
+					<p><a href="http://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#nvdisasm">nvdisasm</a> extracts information from standalone cubin files and presents them in human readable format.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> nvdisasm ./vectorAdd.cubin
 	.headerflags	@"EF_CUDA_TEXMODE_UNIFIED EF_CUDA_64BIT_ADDRESS EF_CUDA_SM35 EF_CUDA_PTX_SM(EF_CUDA_SM35) "
@@ -777,26 +777,26 @@ _Z9vectorAddPKfS0_Pfi:
         /*00b0*/                BRA `(.L_2);
 .L_23:
 </pre>
-          <p>Generate a PNG image of the control flow of vectorAdd.cubin with <a href="http://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#nvdisasm">nvdisasm</a> and <a href="http://www.graphviz.org">Graphviz</a>.</p>
+					<p>Generate a PNG image of the control flow of vectorAdd.cubin with <a href="http://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#nvdisasm">nvdisasm</a> and <a href="http://www.graphviz.org">Graphviz</a>.</p>
 <pre class="sh">
 <b class="text-info">hjli@hpc1:~/cudart/vectorAdd></b> nvdisasm -cfg ./vectorAdd.cubin | dot -Tpng -ovectorAdd.png
 </pre>
-          <p><img class="img-responsive" src="../grey.gif" data-original="vectorAdd.png" alt="vectorAdd.png"></p>
-        </div>
-      </div>
-    </section>
-  </div>
-  <footer>
-    <div class="container">
-      <p><a href="http://www.cuhk.edu.hk"><img src="../cuhk.jpg" alt="CUHK logo"></a>&copy; 2012-2016 Chinese University of Hong Kong. Platform designed by <a href="http://www.cse.cuhk.edu.hk/~hjli">Hongjian Li</a>. Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.<a href="http://validator.w3.org/check?uri=referer"><img src="../HTML5_Badge_512.png" alt="HTML5 logo"></a></p>
-    </div>
-  </footer>
-  <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script src="../bootstrap.min.js"></script>
-  <script src="../jquery.lazyload.min.js"></script>
-  <script src="jquery.snippet.min.js"></script>
-  <script src="sh_sh.min.js"></script>
-  <script src="sh_makefile.min.js"></script>
-  <script src="index.js"></script>
+					<p><img class="img-responsive" src="../grey.gif" data-original="vectorAdd.png" alt="vectorAdd.png"></p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer>
+		<div class="container">
+			<p><a href="http://www.cuhk.edu.hk"><img src="../cuhk.jpg" alt="CUHK logo"></a>&copy; 2012-2016 Chinese University of Hong Kong. Platform designed by <a href="http://www.cse.cuhk.edu.hk/~hjli">Hongjian Li</a>. Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.<a href="http://validator.w3.org/check?uri=referer"><img src="../HTML5_Badge_512.png" alt="HTML5 logo"></a></p>
+		</div>
+	</footer>
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../bootstrap.min.js"></script>
+	<script src="../jquery.lazyload.min.js"></script>
+	<script src="jquery.snippet.min.js"></script>
+	<script src="sh_sh.min.js"></script>
+	<script src="sh_makefile.min.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>

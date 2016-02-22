@@ -1,197 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Hongjian Li">
-  <meta name="description" content="USR: ligand-based virtual screening powered by ultrafast shape recognition techniques">
-  <title>USR: ligand-based virtual screening powered by ultrafast shape recognition techniques</title>
-  <link rel="stylesheet" href="../bootstrap.min.css">
-  <link rel="stylesheet" href="../bootstrap-theme.min.css">
-  <link rel="stylesheet" href="../jquery-ui.min.css">
-  <link rel="stylesheet" href="../index.css">
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
-  <script>
-    var _gaq=[['_setAccount','UA-20604862-1'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Hongjian Li">
+	<meta name="description" content="USR: ligand-based virtual screening powered by ultrafast shape recognition techniques">
+	<title>USR: ligand-based virtual screening powered by ultrafast shape recognition techniques</title>
+	<link rel="stylesheet" href="../bootstrap.min.css">
+	<link rel="stylesheet" href="../bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../jquery-ui.min.css">
+	<link rel="stylesheet" href="../index.css">
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
+	<script>
+		var _gaq=[['_setAccount','UA-20604862-1'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
 </head>
 <body>
-  <a class="sr-only" href="#content">Skip navigation</a>
-  <a href="https://github.com/HongjianLi/istar" class="ribbon"></a>
-  <header class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href=".."><img src="../logo.png" alt="istar logo">istar: software as a service</a>
-          </li>
-          <li>
-            <a href="../idock"><img src="../idock/logo.png" alt="idock logo">idock: structure-based virtual screening</a>
-          </li>
-          <li class="active">
-            <a href="../usr"><img src="../usr/logo.png" alt="idock logo">USR: ligand-based virtual screening</a>
-          </li>
-          <li>
-            <a href="../iview"><img src="../iview/logo.png" alt="iview logo">iview: interactive WebGL visualizer</a>
-          </li>
-          <li>
-            <a href="../igrep"><img src="../igrep/logo.png" alt="igrep logo">igrep: DNA sequence matching</a>
-          </li>
-          <li>
-            <a href="../icuda"><img src="../icuda/logo.png" alt="icuda logo">icuda: introduction to CUDA</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <div class="jumbotron" id="content" role="main">
-    <div class="container">
-      <h1><img src="logo.png" alt="logo" class="logo">USR & USRCAT</h1>
-      <p>ligand-based virtual screening powered by ultrafast shape recognition techniques</p>
-      <p>a new version is available at <a href="http://usr.marseille.inserm.fr">http://usr.marseille.inserm.fr</a>, screening 94 million conformers and running 500 times faster</p>
-    </div>
-  </div>
-  <div class="container">
-    <section>
-      <div class="page-header">
-        <h2>Submitted jobs</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12" id="pager">
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="page-header">
-        <h2>Submit a new job</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>The input to USR is onefold:</p>
-          <ul>
-            <li>A query molecule in 3D format. Totally 23,129,083 molecules collected from the <a href="http://zinc.docking.org/subsets/all-clean">All Clean</a> subset of <a href="http://zinc.docking.org">ZINC</a> are to be screened.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>The output from USR is twofold:</p>
-          <ul>
-            <li><img src="../excel.png" alt="hits.csv.gz">hits.csv.gz: ZINC ID, USR score and USRCAT score of the top 10000 hit molecules geometrically and pharmacophorically similar to the query molecule.</li>
-            <li><img src="../molecule.png" alt="hits.pdbqt.gz">hits.pdbqt.gz: structures of the top 1000 hit molecules.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row" role="form">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="ligand"><a title="must conform to MOL2, SDF, XYZ, PDB or PDBQT format" id="ligand_label">Query molecule in MOL2, SDF, XYZ, PDB or PDBQT format</a></label> <input type="file" id="ligand">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <canvas>Your browser does not support WebGL.</canvas>
-        </div>
-      </div>
-      <div class="row" role="form">
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="description"><a title="at most 20 characters" id="description_label">Briefly describe your job</a></label>
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
-              <input type="text" class="form-control" id="description" placeholder="TMC278">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="email"><a title="compulsory" id="email_label">Email to receive completion notification</a></label>
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-              <input type="email" class="form-control" id="email" placeholder="Jacky@cuhk.edu.hk">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label><a>Choose a compound library to screen</a></label>
-            <div class="input-group">
-              <label class="radio-inline">
-                <input type="radio" name="libraryRadioOptions" value="16" checked>23,129,083 clean compounds
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="libraryRadioOptions" value="dfn">3,167 approved drugs
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-1">
-          <div class="form-group">
-            <button class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-cloud-upload"></span> Submit</button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="page-header">
-        <h2>Tutorials</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="ui-accordion">
-            <h3>How to submit a new job</h3>
-            <div>
-		      <p>Open your query molecule locally in the WebGL canvas. The supported file formats are:</p>
-		      <ul>
-		        <li>MOL2. Your mol2 file must contain <code>@&lt;TRIPOS&gt;ATOM</code> and <code>@&lt;TRIPOS&gt;BOND</code> records. Here is <a href="sample.mol2">a sample file</a>.</li>
-		        <li>SDF. Your sdf file must contain atoms and bonds. Here is <a href="sample.sdf">a sample file</a>.</li>
-		        <li>XYZ. Your xyz file must contain atoms. Bonds will be recovered automatically. Here is <a href="sample.xyz">a sample file</a>.</li>
-		        <li>PDB. Your pdb file must contain <code>HETATM</code> and <code>CONECT</code> records. Here is <a href="sample.pdb">a sample file</a>.</li>
-		        <li>PDBQT. Your pdbqt file must contain <code>ATOM</code> records. Bonds will be recovered automatically. Here is <a href="sample.pdbqt">a sample file</a>.</li>
-		      </ul>
-		      <p>The provided molecule file must contain exactly one query molecule.</p>
-		      <p>The WebGL canvas supports the following keyings:</p>
-		      <ul>
-		        <li>Default: rotate</li>
-		        <li>Ctrl: translate</li>
-		        <li>Shift: zoom in/out</li>
-		        <li>Ctrl + shift: slab</li>
-		      </ul>
-              <img class="img-responsive" src="../grey.gif" data-original="ZINC01493878.png" alt="ZINC01493878">
-              <p>Briefly describe your job. The job description is defaulted to your query molecule filename.</p>
-              <p>Fill in your email to receive notification upon job completion. Fill in any anonymous email should you not want to receive notification.</p>
-              <p>Submit your job.</p>
-              <p>Check your job status in the topmost table.</p>
-            </div>
-            <h3>How to enable WebGL to visualize the query molecule</h3>
-            <div>
-              <p>Check the compatibility table for support of WebGL in desktop and mobile browsers at <a href="http://caniuse.com/webgl">http://caniuse.com/webgl</a>.</p>
-		      <p>IE11 has experimental support of WebGL.</p>
-		      <p>Chrome 32 enables WebGL by default.</p>
-		      <p>Firefox WebGL can be enabled by following <a href="https://wiki.mozilla.org/Blocklisting/Blocked_Graphics_Drivers#How_to_force-enable_blocked_graphics_features">these instructions</a>.</p>
-		      <p>Safari WebGL can be enabled by following <a href="https://discussions.apple.com/thread/3300585">these instructions</a>.</p>
-            </div>
-            <h3>How to use the REST API to programmatically submit multiple jobs in batch and query for job status</h3>
-            <div>
-              <p>Submit a new job via HTTP POST</p>
-              <pre>
+	<a class="sr-only" href="#content">Skip navigation</a>
+	<a href="https://github.com/HongjianLi/istar" class="ribbon"></a>
+	<header class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<nav class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href=".."><img src="../logo.png" alt="istar logo">istar: software as a service</a>
+					</li>
+					<li>
+						<a href="../idock"><img src="../idock/logo.png" alt="idock logo">idock: structure-based virtual screening</a>
+					</li>
+					<li class="active">
+						<a href="../usr"><img src="../usr/logo.png" alt="idock logo">USR: ligand-based virtual screening</a>
+					</li>
+					<li>
+						<a href="../iview"><img src="../iview/logo.png" alt="iview logo">iview: interactive WebGL visualizer</a>
+					</li>
+					<li>
+						<a href="../igrep"><img src="../igrep/logo.png" alt="igrep logo">igrep: DNA sequence matching</a>
+					</li>
+					<li>
+						<a href="../icuda"><img src="../icuda/logo.png" alt="icuda logo">icuda: introduction to CUDA</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="jumbotron" id="content" role="main">
+		<div class="container">
+			<h1><img src="logo.png" alt="logo" class="logo">USR & USRCAT</h1>
+			<p>ligand-based virtual screening powered by ultrafast shape recognition techniques</p>
+			<p>a new version is available at <a href="http://usr.marseille.inserm.fr">http://usr.marseille.inserm.fr</a>, screening 94 million conformers and running 500 times faster</p>
+		</div>
+	</div>
+	<div class="container">
+		<section>
+			<div class="page-header">
+				<h2>Submitted jobs</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12" id="pager">
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Submit a new job</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>The input to USR is onefold:</p>
+					<ul>
+						<li>A query molecule in 3D format. Totally 23,129,083 molecules collected from the <a href="http://zinc.docking.org/subsets/all-clean">All Clean</a> subset of <a href="http://zinc.docking.org">ZINC</a> are to be screened.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>The output from USR is twofold:</p>
+					<ul>
+						<li><img src="../excel.png" alt="hits.csv.gz">hits.csv.gz: ZINC ID, USR score and USRCAT score of the top 10000 hit molecules geometrically and pharmacophorically similar to the query molecule.</li>
+						<li><img src="../molecule.png" alt="hits.pdbqt.gz">hits.pdbqt.gz: structures of the top 1000 hit molecules.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row" role="form">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="ligand"><a title="must conform to MOL2, SDF, XYZ, PDB or PDBQT format" id="ligand_label">Query molecule in MOL2, SDF, XYZ, PDB or PDBQT format</a></label> <input type="file" id="ligand">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<canvas>Your browser does not support WebGL.</canvas>
+				</div>
+			</div>
+			<div class="row" role="form">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="description"><a title="at most 20 characters" id="description_label">Briefly describe your job</a></label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-book"></span></span>
+							<input type="text" class="form-control" id="description" placeholder="TMC278">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="email"><a title="compulsory" id="email_label">Email to receive completion notification</a></label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+							<input type="email" class="form-control" id="email" placeholder="Jacky@cuhk.edu.hk">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label><a>Choose a compound library to screen</a></label>
+						<div class="input-group">
+							<label class="radio-inline">
+								<input type="radio" name="libraryRadioOptions" value="16" checked>23,129,083 clean compounds
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="libraryRadioOptions" value="dfn">3,167 approved drugs
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-1">
+					<div class="form-group">
+						<button class="btn btn-primary" id="submit"><span class="glyphicon glyphicon-cloud-upload"></span> Submit</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Tutorials</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="ui-accordion">
+						<h3>How to submit a new job</h3>
+						<div>
+					<p>Open your query molecule locally in the WebGL canvas. The supported file formats are:</p>
+					<ul>
+						<li>MOL2. Your mol2 file must contain <code>@&lt;TRIPOS&gt;ATOM</code> and <code>@&lt;TRIPOS&gt;BOND</code> records. Here is <a href="sample.mol2">a sample file</a>.</li>
+						<li>SDF. Your sdf file must contain atoms and bonds. Here is <a href="sample.sdf">a sample file</a>.</li>
+						<li>XYZ. Your xyz file must contain atoms. Bonds will be recovered automatically. Here is <a href="sample.xyz">a sample file</a>.</li>
+						<li>PDB. Your pdb file must contain <code>HETATM</code> and <code>CONECT</code> records. Here is <a href="sample.pdb">a sample file</a>.</li>
+						<li>PDBQT. Your pdbqt file must contain <code>ATOM</code> records. Bonds will be recovered automatically. Here is <a href="sample.pdbqt">a sample file</a>.</li>
+					</ul>
+					<p>The provided molecule file must contain exactly one query molecule.</p>
+					<p>The WebGL canvas supports the following keyings:</p>
+					<ul>
+						<li>Default: rotate</li>
+						<li>Ctrl: translate</li>
+						<li>Shift: zoom in/out</li>
+						<li>Ctrl + shift: slab</li>
+					</ul>
+							<img class="img-responsive" src="../grey.gif" data-original="ZINC01493878.png" alt="ZINC01493878">
+							<p>Briefly describe your job. The job description is defaulted to your query molecule filename.</p>
+							<p>Fill in your email to receive notification upon job completion. Fill in any anonymous email should you not want to receive notification.</p>
+							<p>Submit your job.</p>
+							<p>Check your job status in the topmost table.</p>
+						</div>
+						<h3>How to enable WebGL to visualize the query molecule</h3>
+						<div>
+							<p>Check the compatibility table for support of WebGL in desktop and mobile browsers at <a href="http://caniuse.com/webgl">http://caniuse.com/webgl</a>.</p>
+					<p>IE11 has experimental support of WebGL.</p>
+					<p>Chrome 32 enables WebGL by default.</p>
+					<p>Firefox WebGL can be enabled by following <a href="https://wiki.mozilla.org/Blocklisting/Blocked_Graphics_Drivers#How_to_force-enable_blocked_graphics_features">these instructions</a>.</p>
+					<p>Safari WebGL can be enabled by following <a href="https://discussions.apple.com/thread/3300585">these instructions</a>.</p>
+						</div>
+						<h3>How to use the REST API to programmatically submit multiple jobs in batch and query for job status</h3>
+						<div>
+							<p>Submit a new job via HTTP POST</p>
+							<pre>
 curl http://istar.cse.cuhk.edu.hk/usr/jobs -d 'description=ZINC01493878.sdf&amp;email=Jacky@cuhk.edu.hk&amp;format=sdf&amp;ligand=ZINC01493878
   -OEChem-05261420083D
 
@@ -297,66 +297,66 @@ curl http://istar.cse.cuhk.edu.hk/usr/jobs -d 'description=ZINC01493878.sdf&amp;
 M  END
 $$$$
 '
-              </pre>
-              <p>Obtain existing jobs via HTTP GET</p>
-              <pre>
+							</pre>
+							<p>Obtain existing jobs via HTTP GET</p>
+							<pre>
 curl http://istar.cse.cuhk.edu.hk/usr/jobs/
-              </pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="page-header">
-        <h2>Screening libraries</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>23,129,083 molecules were collected from versions 2012-04-26, 2013-01-10 and 2013-12-18 of the <a href="http://zinc.docking.org/subsets/all-clean">All Clean</a> subset of <a href="http://zinc.docking.org">ZINC</a> and converted into <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file">PDBQT</a> format. We thank Professor John J. Irwin, the developer and maintainer of ZINC, for granting us permission to use ZINC with three conditions:</p>
-          <ul>
-            <li>We shall provide links to http://zinc.docking.org/substance/zincid for top hits so that users can seek for the most current purchasing information at ZINC's official web site.</li>
-            <li>We shall limit the number of hits for download to 1000 molecules from a single job.</li>
-            <li>We shall update our data when ZINC data is updated so that users can benefit from the most current information.</li>
-          </ul>
-          <p>3,167 approved drugs were collected from <a href="http://zinc.docking.org/catalogs/dbap">dbap</a>, <a href="http://zinc.docking.org/catalogs/fda">fda</a> and <a href="http://zinc.docking.org/catalogs/npc">npc</a> catalogs of ZINC. Duplicate compounds were removed.</p>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="page-header">
-        <h2>References</h2>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <h4>USR</h4>
-          <p>Pedro J. Ballester and W. Graham Richards. Ultrafast shape recognition to search compound databases for similar molecular shapes. <em>Journal of Computational Chemistry</em>, 28(10):1711-1723, 2007. <a href="http://dx.doi.org/10.1002/jcc.20681">DOI: 10.1002/jcc.20681</a></p>
-          <p>Pedro J. Ballester. Ultrafast shape recognition: method and applications. <em>Future Medicinal Chemistry</em>, 3(1):65-78, 2011. <a href="http://dx.doi.org/10.4155/fmc.10.280">DOI: 10.4155/fmc.10.280</a></p>
-          <h4>USRCAT</h4>
-          <p>Adrian M Schreyer and Tom Blundell. USRCAT: real-time ultrafast shape recognition with pharmacophoric constraints. <em>Journal of Cheminformatics</em>, 4(1):27, 2012. <a href="http://dx.doi.org/10.1186/1758-2946-4-27">DOI: 10.1186/1758-2946-4-27</a></p>
-          <h4>Prospective applications of USR</h4>
-          <p>Birgit Hoeger, Maren Diether, Pedro J. Ballester and Maja Köhn. Biochemical evaluation of virtual screening methods reveals a cell-active inhibitor of the cancer-promoting phosphatases of regenerating liver. <em>European Journal of Medicinal Chemistry</em>, 88:89-100, 2014. <a href="http://dx.doi.org/10.1016/j.ejmech.2014.08.060">DOI: 10.1016/j.ejmech.2014.08.060</a></p>
-          <p>Sachin P. Patil, Pedro J. Ballester and Cassidy R. Kerezsi. Prospective virtual screening for novel p53-MDM2 inhibitors using ultrafast shape recognition. <em>Journal of Computer-Aided Molecular Design</em>, 28(2):89-97, 2014. <a href="http://dx.doi.org/10.1007/s10822-014-9732-4">DOI: 10.1007/s10822-014-9732-4</a></p>
-          <p>Pedro J. Ballester, Martina Mangold, Nigel I. Howard, Richard L. Marchese Robinson, Chris Abell, Jochen Blumberger and John B. O. Mitchell. Hierarchical virtual screening for the discovery of new molecular scaffolds in antibacterial hit identification. <em>Journal of The Royal Society Interface</em>, 9(77):3196-3207, 2012. <a href="http://dx.doi.org/10.1098/rsif.2012.0569">DOI: 10.1098/rsif.2012.0569</a></p>
-          <p>Pedro J. Ballester, Isaac Westwood, Nicola Laurieri, Edith Sim, W. Graham Richards. Prospective virtual screening with Ultrafast Shape Recognition: the identification of novel inhibitors of arylamine N-acetyltransferases. <em>Journal of The Royal Society Interface</em>, 7(43):335-342, 2009. <a href="http://dx.doi.org/10.1098/rsif.2009.0170">DOI: 10.1098/rsif.2009.0170</a></p>
-        </div>
-      </div>
-    </section>
-  </div>
-  <footer>
-    <div class="container">
-      <p><a href="http://www.cuhk.edu.hk"><img src="../cuhk.jpg" alt="CUHK logo"></a>&copy; 2012-2016 Chinese University of Hong Kong. Platform designed by <a href="http://www.cse.cuhk.edu.hk/~hjli">Hongjian Li</a>. Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.<a href="http://validator.w3.org/check?uri=referer"><img src="../HTML5_Badge_512.png" alt="HTML5 logo"></a></p>
-    </div>
-  </footer>
-  <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script src="../bootstrap.min.js"></script>
-  <script src="../jquery-ui.min.js"></script>
-  <script src="../jquery-dateFormat.min.js"></script>
-  <script src="../jquery.pager.js"></script>
-  <script src="../jquery.lazyload.min.js"></script>
-  <script src="../iview/three.min.js"></script>
-  <script src="../istar.js"></script>
-  <script src="../validator.js"></script>
-  <script src="index.js"></script>
+							</pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Screening libraries</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>23,129,083 molecules were collected from versions 2012-04-26, 2013-01-10 and 2013-12-18 of the <a href="http://zinc.docking.org/subsets/all-clean">All Clean</a> subset of <a href="http://zinc.docking.org">ZINC</a> and converted into <a href="http://autodock.scripps.edu/faqs-help/faq/what-is-the-format-of-a-pdbqt-file">PDBQT</a> format. We thank Professor John J. Irwin, the developer and maintainer of ZINC, for granting us permission to use ZINC with three conditions:</p>
+					<ul>
+						<li>We shall provide links to http://zinc.docking.org/substance/zincid for top hits so that users can seek for the most current purchasing information at ZINC's official web site.</li>
+						<li>We shall limit the number of hits for download to 1000 molecules from a single job.</li>
+						<li>We shall update our data when ZINC data is updated so that users can benefit from the most current information.</li>
+					</ul>
+					<p>3,167 approved drugs were collected from <a href="http://zinc.docking.org/catalogs/dbap">dbap</a>, <a href="http://zinc.docking.org/catalogs/fda">fda</a> and <a href="http://zinc.docking.org/catalogs/npc">npc</a> catalogs of ZINC. Duplicate compounds were removed.</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>References</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h4>USR</h4>
+					<p>Pedro J. Ballester and W. Graham Richards. Ultrafast shape recognition to search compound databases for similar molecular shapes. <em>Journal of Computational Chemistry</em>, 28(10):1711-1723, 2007. <a href="http://dx.doi.org/10.1002/jcc.20681">DOI: 10.1002/jcc.20681</a></p>
+					<p>Pedro J. Ballester. Ultrafast shape recognition: method and applications. <em>Future Medicinal Chemistry</em>, 3(1):65-78, 2011. <a href="http://dx.doi.org/10.4155/fmc.10.280">DOI: 10.4155/fmc.10.280</a></p>
+					<h4>USRCAT</h4>
+					<p>Adrian M Schreyer and Tom Blundell. USRCAT: real-time ultrafast shape recognition with pharmacophoric constraints. <em>Journal of Cheminformatics</em>, 4(1):27, 2012. <a href="http://dx.doi.org/10.1186/1758-2946-4-27">DOI: 10.1186/1758-2946-4-27</a></p>
+					<h4>Prospective applications of USR</h4>
+					<p>Birgit Hoeger, Maren Diether, Pedro J. Ballester and Maja Köhn. Biochemical evaluation of virtual screening methods reveals a cell-active inhibitor of the cancer-promoting phosphatases of regenerating liver. <em>European Journal of Medicinal Chemistry</em>, 88:89-100, 2014. <a href="http://dx.doi.org/10.1016/j.ejmech.2014.08.060">DOI: 10.1016/j.ejmech.2014.08.060</a></p>
+					<p>Sachin P. Patil, Pedro J. Ballester and Cassidy R. Kerezsi. Prospective virtual screening for novel p53-MDM2 inhibitors using ultrafast shape recognition. <em>Journal of Computer-Aided Molecular Design</em>, 28(2):89-97, 2014. <a href="http://dx.doi.org/10.1007/s10822-014-9732-4">DOI: 10.1007/s10822-014-9732-4</a></p>
+					<p>Pedro J. Ballester, Martina Mangold, Nigel I. Howard, Richard L. Marchese Robinson, Chris Abell, Jochen Blumberger and John B. O. Mitchell. Hierarchical virtual screening for the discovery of new molecular scaffolds in antibacterial hit identification. <em>Journal of The Royal Society Interface</em>, 9(77):3196-3207, 2012. <a href="http://dx.doi.org/10.1098/rsif.2012.0569">DOI: 10.1098/rsif.2012.0569</a></p>
+					<p>Pedro J. Ballester, Isaac Westwood, Nicola Laurieri, Edith Sim, W. Graham Richards. Prospective virtual screening with Ultrafast Shape Recognition: the identification of novel inhibitors of arylamine N-acetyltransferases. <em>Journal of The Royal Society Interface</em>, 7(43):335-342, 2009. <a href="http://dx.doi.org/10.1098/rsif.2009.0170">DOI: 10.1098/rsif.2009.0170</a></p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer>
+		<div class="container">
+			<p><a href="http://www.cuhk.edu.hk"><img src="../cuhk.jpg" alt="CUHK logo"></a>&copy; 2012-2016 Chinese University of Hong Kong. Platform designed by <a href="http://www.cse.cuhk.edu.hk/~hjli">Hongjian Li</a>. Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.<a href="http://validator.w3.org/check?uri=referer"><img src="../HTML5_Badge_512.png" alt="HTML5 logo"></a></p>
+		</div>
+	</footer>
+	<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../bootstrap.min.js"></script>
+	<script src="../jquery-ui.min.js"></script>
+	<script src="../jquery-dateFormat.min.js"></script>
+	<script src="../jquery.pager.js"></script>
+	<script src="../jquery.lazyload.min.js"></script>
+	<script src="../iview/three.min.js"></script>
+	<script src="../istar.js"></script>
+	<script src="../validator.js"></script>
+	<script src="index.js"></script>
 </body>
 </html>
