@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Hongjian Li">
+	<meta name="description" content="ADW: a unified and curated colleciton of clinically approved drugs worldwide for repurposing and virtual screening">
+	<title>ADW: a unified and curated colleciton of clinically approved drugs worldwide for repurposing and virtual screening</title>
+	<link rel="stylesheet" href="../bootstrap.min.css">
+	<link rel="stylesheet" href="../bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../index.css">
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-57-precomposed.png">
+	<script>
+		var _gaq=[['_setAccount','UA-20604862-1'],['_trackPageview']];
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+</head>
+<body>
+	<div class="jumbotron" id="content" role="main">
+		<div class="container">
+			<h1><img src="logo.svg" alt="logo" class="logo">ADW</h1>
+			<p>a unified and curated colleciton of clinically approved drugs worldwide for repurposing and virtual screening</p>
+		</div>
+	</div>
+	<div class="container">
+		<section>
+			<div class="page-header">
+				<h2>Downloads and specifications</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>The ADW database comprises 3,167 unique drugs that have been approved for clinical use by US (FDA), UK (NHS), EU (EMA), Japanese (NHI), and Canadian (HC) authorities.</p>
+					<p>Download: <a href="adw.tar.gz">adw.tar.gz</a></p>
+					<p>Included in the gzipped tarball are:</p>
+					<ul>
+						<li>properties.tsv: all properties of the compounds, in tab-delimited format. Columns are:
+							<ul>
+								<li>ID: ZINC ID of 8 digits</li>
+								<li>MWT: molecular weight (g/mol)</li>
+								<li>LGP: partition coefficient xlogP</li>
+								<li>ADS: apolar desolvation (kcal/mol)</li>
+								<li>PDS: polar desolvation (kcal/mol)</li>
+								<li>HBD: hydrogen bond donors</li>
+								<li>HBA: hydrogen bond acceptors</li>
+								<li>PSA: topological polar surface area (&Aring;<sup>2</sup>)</li>
+								<li>CHG: net charge</li>
+								<li>NRB: number of rotatable bonds</li>
+								<li>SMILES: SMILES string</li>
+								<li>CAS: CAS registry numbers</li>
+								<li>Suppliers: vendors and annotations, delimited by |</li>
+								<li>Name: popular name</li>
+							</ul>
+						</li>
+						<li>mol2, sdf, pdbqt: directories of 3D structure files in ready-to-screen formats.</li>
+						<li>svg: directory of vector plots of 2D structures.</li>
+						<li>conformers.sdf: 23,106 conformers.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Construction and statistics</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>The raw data of ADW were retrieved from 3 catalogs of <a href="http://zinc.docking.org">ZINC</a>:</p>
+					<ul>
+						<li><a href="http://zinc.docking.org/catalogs/dbap">DrugBank-approved</a> of version 2014-03-19</li>
+						<li><a href="http://zinc.docking.org/catalogs/fda">FDA-approved drugs (via DSSTOX)</a> of version 2012-07-25</li>
+						<li><a href="http://zinc.docking.org/catalogs/npc">the NCGC Pharmaceutical Collection (NPC)</a> of version 2012-03-13</li>
+					</ul>
+					<p>Then a three-step curation was applied:</p>
+					<ul>
+						<li>Compounds whose web page returned a <a href="https://en.wikipedia.org/wiki/HTTP_404">HTTP 404</a> error code were removed, as some compounds deposited in ZINC at an early time were later tagged as depleted.</li>
+						<li>Compounds without a valid <a href="https://en.wikipedia.org/wiki/CAS_Registry_Number">CAS registry number</a> were removed, as CAS numbers are normally required to query for commercial availability of the compounds.</li>
+						<li>Compounds with a duplicate canonical <a href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system">SMILES</a> string were removed, as these actually refer to different conformations of the same structure.</li>
+					</ul>
+					<p>These filtering criteria resulted in a healthy, useful and non-redundant set of 3,167 approved drugs worldwide.</p>
+					<p>Histogram distributions of the 9 calculated chemical properties:</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="mwt.svg" alt="Molecular weight (g/mol)">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="lgp.svg" alt="Partition coefficient xlogP">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="ads.svg" alt="Apolar desolvation (kcal/mol)">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="pds.svg" alt="Polar desolvation (kcal/mol)">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="hbd.svg" alt="Hydrogen bond donors">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="hba.svg" alt="Hydrogen bond acceptors">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="psa.svg" alt="Polar surface area tPSA (&Aring;<sup>2</sup>)">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="chg.svg" alt="Net charge">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="../grey.gif" data-original="nrb.svg" alt="Rotatable bonds">
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Conformer generation</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>Conformers were generated to permit structural superimposition and shape recognition. Totally 23,016 low-energy and diverse conformers were generated using <a href="http://rdkit.org">RDKit</a> release 2015.09.2, specifically its new algorithm named <a href="http://dx.doi.org/10.1021/acs.jcim.5b00654">ETKDG</a> that combines the computationally efficient distance geometry method with experimental torsion-angle preferences obtained from small-molecule crystallographic data. Settings were num_confs = 50 and rmsThresh = 2.0, which mean. This ensures the generated conformers are both energy-minimized and conformationally diverse. As a result, an average of 7 conformers per compound were generated, with only one conformer retained for slightly more than 20% compounds and a maximum of 50 conformers generated for some compounds.</p>
+					<img class="img-responsive" src="../grey.gif" data-original="ncf.svg" alt="number of conformers">
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h2>Applications</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p>[1] Xi-Nan Shi, Hongjian Li, Hong Yao, Xu Liu, Ling Li, Kwong-Sak Leung, Hsiang-fu Kung, Di Lu, Man-Hon Wong, and Marie Chia-mi Lin. In silico Identification and in vitro and in vivo Validation of Anti-Psychotic Drug Fluspirilene as a Potential CDK2 Inhibitor and a Candidate Anti-Cancer Drug. <em>PLoS ONE</em>, 10(7):e0132072, 2015. <a href="http://dx.doi.org/10.1371/journal.pone.0132072">DOI: 10.1371/journal.pone.0132072</a></p>
+					<p>[2] Xi-Nan Shi, Hongjian Li, Hong Yao, Xu Liu, Ling Li, Kwong-Sak Leung, Hsiang-fu Kung, Man-Hon Wong, and Marie Chia-mi Lin. Adapalene Inhibited the Activity of Cyclin-Dependent Kinase 2 in Colorectal Carcinoma. <em>Molecular Medicine Reports</em>, 12(5):6501-6508, 2015. <a href="http://dx.doi.org/10.3892/mmr.2015.4310">DOI: 10.3892/mmr.2015.4310</a></p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer>
+		<div class="container">
+			<p><a href="http://www.cuhk.edu.hk"><img src="../cuhk.svg" alt="CUHK logo"></a>&copy; 2012-2016 Chinese University of Hong Kong. Platform designed by <a href="http://www.cse.cuhk.edu.hk/~hjli">Hongjian Li</a>. Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>.<a href="http://validator.w3.org/check?uri=referer"><img src="../HTML5_Badge.svg" alt="HTML5 logo"></a></p>
+		</div>
+	</footer>
+	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="../bootstrap.min.js"></script>
+	<script src="../jquery.lazyload.min.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>
