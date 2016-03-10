@@ -83,7 +83,7 @@
 						<li>Compounds with a duplicate canonical <a href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system">SMILES</a> string were removed, as these actually refer to different conformations of the same structure.</li>
 					</ul>
 					<p>These filtering criteria resulted in a healthy, useful and non-redundant set of 3,167 approved drugs worldwide.</p>
-					<p>Histogram distributions of the 9 calculated chemical properties:</p>
+					<p>Histogram distributions of 9 calculated chemical properties:</p>
 				</div>
 			</div>
 			<div class="row">
@@ -126,19 +126,47 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<p>Conformers were generated to permit structural superimposition and shape recognition. Totally 23,016 low-energy and diverse conformers were generated using <a href="http://rdkit.org">RDKit</a> release 2015.09.2, specifically its new algorithm named <a href="http://dx.doi.org/10.1021/acs.jcim.5b00654">ETKDG</a> that combines the computationally efficient distance geometry method with experimental torsion-angle preferences obtained from small-molecule crystallographic data. Settings were num_confs = 50 and rmsThresh = 2.0, which mean. This ensures the generated conformers are both energy-minimized and conformationally diverse. As a result, an average of 7 conformers per compound were generated, with only one conformer retained for slightly more than 20% compounds and a maximum of 50 conformers generated for some compounds.</p>
-					<img class="img-responsive" src="ncf.svg" alt="number of conformers">
+					<p>Conformers were generated from SMILES strings to permit structural superimposition and shape recognition. Totally 23,016 low-energy and diverse conformers were generated using <a href="http://rdkit.org">RDKit</a> release 2015.09.2, specifically its new algorithm named <a href="http://dx.doi.org/10.1021/acs.jcim.5b00654">ETKDG</a> that combines the computationally efficient distance geometry method with experimental torsion-angle preferences obtained from small-molecule crystallographic data.</p>
+					<ul>
+						<li>Initially, for each SMILES string, up to 50 low-energy conformers were generated and sorted.</li>
+						<li>Thereafter, a greedy pruning was performed, where the conformer with the lowest energy was retained and from then on only those that are at least RMSD 2&Aring; away from already retained conformations were kept.</li>
+					</ul>
+					<p>These settings ensure the retained conformers are both energy minimized and conformationally diverse. Consequently, an average of 7 conformers per compound were generated and retained, with only one conformer retained for slightly more than 20% compounds and a maximum of 50 conformers retained for some compounds. The number of retained conformers generally increases when the number of rotatable bonds increases (from 0 to 15) because of larger conformational space.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<img class="img-responsive" src="ncf.svg" alt="conformers">
+				</div>
+				<div class="col-md-8">
+					<img class="img-responsive" src="nrb-ncf.svg" alt="conformers plotted against rotatable bonds">
 				</div>
 			</div>
 		</section>
 		<section>
 			<div class="page-header">
-				<h2>Applications</h2>
+				<h2>Prospective applications</h2>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<p>[1] Xi-Nan Shi, Hongjian Li, Hong Yao, Xu Liu, Ling Li, Kwong-Sak Leung, Hsiang-fu Kung, Di Lu, Man-Hon Wong, and Marie Chia-mi Lin. In silico Identification and in vitro and in vivo Validation of Anti-Psychotic Drug Fluspirilene as a Potential CDK2 Inhibitor and a Candidate Anti-Cancer Drug. <em>PLoS ONE</em>, 10(7):e0132072, 2015. <a href="http://dx.doi.org/10.1371/journal.pone.0132072">DOI: 10.1371/journal.pone.0132072</a></p>
-					<p>[2] Xi-Nan Shi, Hongjian Li, Hong Yao, Xu Liu, Ling Li, Kwong-Sak Leung, Hsiang-fu Kung, Man-Hon Wong, and Marie Chia-mi Lin. Adapalene Inhibited the Activity of Cyclin-Dependent Kinase 2 in Colorectal Carcinoma. <em>Molecular Medicine Reports</em>, 12(5):6501-6508, 2015. <a href="http://dx.doi.org/10.3892/mmr.2015.4310">DOI: 10.3892/mmr.2015.4310</a></p>
+					<p>ADW was constructed for the major objective of drug repositioning via virtual screening. To date there have been succeesful prospective applications of ADW. Through ensemble docking of ADW followed by <i>in vitro</i> cytotoxicity assays on cancer cell lines and <i>in vivo</i> experiments on nude mice, two marketed drugs, <a href="http://dx.doi.org/10.1371/journal.pone.0132072">fluspirilene</a> and <a href="http://dx.doi.org/10.3892/mmr.2015.4310">adapalene</a>, have been repurposed as anticancer agents.</p>
+					<p><a href="../usr">USR@istar</a> is a freely available web server for ligand-based virtual screening of ADW. The input is a query molecule, and the output is 1000 geometrically and pharmacophorically similar molecules. When the compound library to screen is selected to be <i>3,167 approved drugs worldwide</i>, the hit molecules will be retrieved from ADW. Below is <a href="../usr/iview/?56d43554b48a7698034597b6">an example</a>:</p>
+					<ul>
+						<li>Shown on the left is the query molecule sorafenib. ZINC ID: 01493878.</li>
+						<li>Shown on the center is the first hit molecule. ZINC ID: 01493878. USRCAT similarity score: 0.99983896.</li>
+						<li>Shown on the right is the second hit molecule. ZINC ID: 84394807. USRCAT similarity score: 0.50409959.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<img class="img-responsive" src="q0.png" alt="q0">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="h0.png" alt="h0">
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive" src="h1.png" alt="h1">
 				</div>
 			</div>
 		</section>
@@ -150,6 +178,5 @@
 	</footer>
 	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="../bootstrap.min.js"></script>
-	<script src="index.js"></script>
 </body>
 </html>
