@@ -15,10 +15,10 @@ obj/score.o: src/score.cpp
 	${CC} -o $@ $< -c -std=c++11 -DNDEBUG -Wall
 
 obj/encode.o: src/encode.cpp
-	${CC} -o $@ $< -c -std=c++11 -DNDEBUG -Wall -I${OPENBABEL_ROOT}/include
+	${CC} -o $@ $< -c -std=c++11 -DNDEBUG -Wall -I${OPENBABEL_ROOT}/include/openbabel-2.0
 
 obj/main.o: src/main.cpp
-	${CC} -o $@ $< -c -std=c++11 -DNDEBUG -Wall -Wno-unused-local-typedef -Wno-deprecated-declarations -Wno-deprecated-register -I${OPENBABEL_ROOT}/include -I${BOOST_ROOT} -I${MONGODBCXXDRIVER_ROOT}/src -I${POCO_ROOT}/include
+	${CC} -o $@ $< -c -std=c++11 -DNDEBUG -Wall -Wno-unused-local-typedef -Wno-deprecated-declarations -Wno-deprecated-register -I${OPENBABEL_ROOT}/include/openbabel-2.0 -I${BOOST_ROOT} -I${MONGODBCXXDRIVER_ROOT}/src -I${POCO_ROOT}/include
 
 clean:
 	rm -f bin/* obj/*
