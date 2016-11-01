@@ -32,6 +32,7 @@ using namespace boost::posix_time;
 using namespace mongo;
 using namespace bson;
 using namespace Poco::Net;
+using std::array;
 
 inline static string local_time()
 {
@@ -44,7 +45,7 @@ inline static Date_t milliseconds_since_epoch()
 }
 
 template <typename T>
-inline vector<T> read(const path& p)
+inline vector<T> read_to_vector(const path& p)
 {
 	boost::filesystem::ifstream ifs(p, ios::binary | ios::ate);
 	const size_t num_bytes = ifs.tellg();
@@ -186,9 +187,9 @@ public:
 		ligands.open(dir / "ligand.pdbqt");
 		assert(ligands.size() == num_ligands);
 
-		zfproperties = read<array<float, 4>>(dir / "zfprop.f32");
+		zfproperties = read_to_vector<std::array<float, 4>>(dir / "zfprop.f32");
 		assert(zfproperties.size() == num_ligands);
-		ziproperties = read<array<int16_t, 5>>(dir / "ziprop.i16");
+		ziproperties = read_to_vector<std::array<int16_t, 5>>(dir / "ziprop.i16");
 		assert(ziproperties.size() == num_ligands);
 
 		usrcat_bin.open(dir / "usrcat.f64", ios::ate),
@@ -207,10 +208,10 @@ public:
 	string_array<size_t> smileses;
 	string_array<size_t> suppliers;
 	stream_array<size_t> ligands;
-	vector<array<float, 4>> zfproperties;
-	vector<array<int16_t, 5>> ziproperties;
+	vector<std::array<float, 4>> zfproperties;
+	vector<std::array<int16_t, 5>> ziproperties;
 	boost::filesystem::ifstream usrcat_bin;
-	array<vector<double>, 2> scores;
+	std::array<vector<double>, 2> scores;
 	vector<size_t> scase;
 };
 
@@ -246,11 +247,11 @@ int main(int argc, char* argv[])
 	const auto collection = "istar.usr";
 	const auto epoch = date(1970, 1, 1);
 	const size_t num_usrs = 2;
-	constexpr array<size_t, num_usrs> qn{{ 12, 60 }};
-	constexpr array<double, num_usrs> qv{{ 1.0 / qn[0], 1.0 / qn[1] }};
+	constexpr std::array<size_t, num_usrs> qn{{ 12, 60 }};
+	constexpr std::array<double, num_usrs> qv{{ 1.0 / qn[0], 1.0 / qn[1] }};
 	const size_t num_references = 4;
 	const size_t num_subsets = 5;
-	const array<string, num_subsets> SubsetSMARTS
+	const std::array<string, num_subsets> SubsetSMARTS
 	{{
 		"[!#1]", // heavy
 		"[#6+0!$(*~[#7,#8,F]),SH0+0v2,s+0,S^3,Cl+0,Br+0,I+0]", // hydrophobic
@@ -260,16 +261,16 @@ int main(int argc, char* argv[])
 	}};
 
 	// Read library files.
-	array<library, 2> libraries;
+	std::array<library, 2> libraries;
 	libraries[0].open("16");
 	libraries[1].open("dfn");
 
 	// Initialize variables.
-	array<vector<int>, num_subsets> subsets;
-	array<vector3, num_references> references;
-	array<vector<double>, num_references> dista;
-	alignas(32) array<double, qn.back()> q;
-	alignas(32) array<double, qn.back()> l;
+	std::array<vector<int>, num_subsets> subsets;
+	std::array<vector3, num_references> references;
+	std::array<vector<double>, num_references> dista;
+	alignas(32) std::array<double, qn.back()> q;
+	alignas(32) std::array<double, qn.back()> l;
 
 	// Enter event loop.
 	cout << local_time() << "Entering event loop" << endl;
@@ -419,7 +420,7 @@ int main(int argc, char* argv[])
 				{
 					dists[i] = distp[subset[i]];
 				}
-				array<double, 3> m{};
+				std::array<double, 3> m{};
 				if (n > 2)
 				{
 					const auto v = 1.0 / n;
