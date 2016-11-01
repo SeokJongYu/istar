@@ -1,4 +1,4 @@
-CC=clang++ -O2 -flto
+CC=g++ -O2 -flto
 
 all: bin/score bin/encode bin/usr
 
