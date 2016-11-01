@@ -1,7 +1,7 @@
 CC=g++ -O2 -flto
 
 bin/igrep: obj/kernel.o obj/main.o
-	${CC} -o $@ $^ -pthread -L${BOOST_ROOT}/lib -lboost_thread -lboost_system -lboost_filesystem -lboost_iostreams -lboost_date_time -L${CUDA_ROOT}/lib64 -lcudart -L${POCO_ROOT}/lib -lPocoFoundation -lPocoNet -L${MONGODBCXXDRIVER_ROOT} -lmongoclient -L${CURL_ROOT}/lib -lcurl
+	${CC} -o $@ $^ -pthread -L${BOOST_ROOT}/lib -lboost_thread -lboost_system -lboost_filesystem -lboost_iostreams -lboost_date_time -L${CUDA_ROOT}/lib64 -lcudart -L${POCO_ROOT}/lib -lPocoFoundation -lPocoNet -L${MONGODBCXXDRIVER_ROOT}/sharedclient -lmongoclient -L${CURL_ROOT}/lib -lcurl
 
 obj/%.o: src/%.cu
 	nvcc -o $@ $< -c -O2 -gencode arch=compute_35,code=sm_35 #-maxrregcount=N -Xptxas=-v
