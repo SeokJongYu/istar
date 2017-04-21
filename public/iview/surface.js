@@ -2609,6 +2609,6 @@ var ProteinSurface = function (data) {
 	};
 };
 
-onmessage = function (e) {
-	postMessage(ProteinSurface(e.data));
-};
+self.addEventListener('message', function (e) {
+	self.postMessage(ProteinSurface(e.data));
+});

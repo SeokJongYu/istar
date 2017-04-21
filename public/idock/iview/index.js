@@ -1332,7 +1332,7 @@ void main()\n\
 			var surfaceLabels = $('#surface label');
 			var surfaceStatus = $('#surfaceStatus');
 			var surfaceWorker = new Worker('../../iview/surface.min.js');
-			surfaceWorker.onmessage = function (e) {
+			surfaceWorker.addEventListener('message', function (e) {
 				var verts = e.data.verts;
 				var faces = e.data.faces;
 				var geo = new THREE.Geometry();
@@ -1354,7 +1354,7 @@ void main()\n\
 				render();
 				surfaceStatus.hide();
 				surfaceLabels.removeClass('disabled');
-			};
+			});
 			var surfaceTypes = {
 				'Van der Waals surface': 1,
 				'solvent excluded surface': 2,
