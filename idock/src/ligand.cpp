@@ -551,8 +551,9 @@ void ligand::write_model(boost::iostreams::filtering_ostream& ligands_pdbqt_gz, 
 		const string& line = lines[j];
 		if (line.size() >= 79) // This line starts with "ATOM" or "HETATM"
 		{
-			const fl   atom_energy = line[77] == 'H' ? 0 : grid_maps[heavy_atoms[heavy_atom].xs](b.grid_index(r.heavy_atoms[heavy_atom]));
-			const vec3& coordinate = line[77] == 'H' ? r.hydrogens[hydrogen++] : r.heavy_atoms[heavy_atom++];
+			const bool is_hydrogen = line[77] == 'H' && (line[78] == ' ' || line[78] == 'D');
+			const fl   atom_energy = is_hydrogen ? 0 : grid_maps[heavy_atoms[heavy_atom].xs](b.grid_index(r.heavy_atoms[heavy_atom]));
+			const vec3& coordinate = is_hydrogen ? r.hydrogens[hydrogen++] : r.heavy_atoms[heavy_atom++];
 			ligands_pdbqt_gz
 				<< line.substr(0, 30)
 				<< setw(8) << coordinate[0]
