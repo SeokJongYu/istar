@@ -1370,10 +1370,21 @@ void main()\n\
 					if (r === undefined) {
 						surfaceLabels.addClass('disabled');
 						surfaceStatus.show();
+						// Remove circular references (due to atom.bonds[]) before posting a message.
+						var atoms = {};
+						Object.keys(surface.atoms).forEach(function (serial) {
+							var atom = surface.atoms[serial];
+							atoms[serial] = {
+								serial: atom.serial,
+								coord: atom.coord,
+								name: atom.name,
+								elem: atom.elem,
+							};
+						})
 						surfaceWorker.postMessage({
 							min: surface.min,
 							max: surface.max,
-							atoms: surface.atoms,
+							atoms: atoms,
 							type: surfaceTypes[surface.active],
 						});
 					} else {
