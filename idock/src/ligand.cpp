@@ -546,7 +546,8 @@ void ligand::write_model(boost::iostreams::filtering_ostream& ligands_pdbqt_gz, 
 		<< "REMARK 927      BINDING AFFINITY PREDICTED BY RF-SCORE:" << setw(8) << s.rfscore << " PKD\n"
 	;
 	const size_t num_lines = lines.size();
-	for (size_t j = 0, heavy_atom = 0, hydrogen = 0; j < num_lines; ++j)
+	size_t heavy_atom = 0, hydrogen = 0;
+	for (size_t j = 0; j < num_lines; ++j)
 	{
 		const string& line = lines[j];
 		if (line.size() >= 79) // This line starts with "ATOM" or "HETATM"
@@ -569,4 +570,6 @@ void ligand::write_model(boost::iostreams::filtering_ostream& ligands_pdbqt_gz, 
 		}
 		ligands_pdbqt_gz << '\n';
 	}
+	assert(heavy_atom == r.heavy_atoms.size());
+	assert(hydrogen == r.hydrogens.size());
 }
